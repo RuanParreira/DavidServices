@@ -1,0 +1,21 @@
+@layer components {
+  .main-form {
+    @apply flex min-h-screen items-center justify-center bg-zinc-200;
+  }
+
+  .form-style {
+    @apply flex w-full flex-col items-center justify-center space-y-6 rounded-xl bg-white p-7 shadow-xl/30 lg:w-auto lg:min-w-lg;
+  }
+  .input-form {
+    @apply w-full rounded-lg border border-gray-300 bg-gray-200 py-3 pr-4 pl-10 outline-none focus:border-none focus:ring-2 focus:ring-blue-600;
+  }
+  .icon-form {
+    @apply absolute top-1/2 left-3 -translate-y-1/2 transform text-xl text-gray-500;
+  }
+  .eye-icon-form {
+    @apply absolute top-1/2 right-3 -translate-y-1/2 transform cursor-pointer text-xl text-gray-500 hover:text-gray-600;
+  }
+  .btn-login {
+    @apply w-full cursor-pointer rounded-lg bg-blue-600 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}

@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "./form.css";
+@import "./menu.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+@layer base {
+  * {
+    font-family: "Poppins", sans-serif;
+  }
+}
+
+@layer components {
+  .main-pages {
+    @apply ml-[16rem] flex h-screen w-[calc(100%-16rem)] bg-zinc-200;
+  }
+}
