@@ -1,8 +1,17 @@
 @layer components {
+  .menu-lateral {
+    @apply fixed top-0 left-0 flex h-full w-[16rem] flex-col border-r border-gray-300 bg-white;
+  }
+  .itens-menu-active {
+    @apply flex w-full items-center rounded-lg bg-blue-600 px-3 py-3 text-left text-white transition-colors;
+  }
   .itens-menu {
-    @apply rounded-lg px-4 py-0.5 text-gray-800 hover:bg-blue-400/40 hover:text-blue-700;
+    @apply flex w-full items-center rounded-lg px-3 py-3 text-left text-gray-700 transition-colors hover:bg-blue-400/60 hover:text-blue-600;
   }
   .icons-menu {
-    @apply text-base;
+    @apply mr-3 text-lg;
+  }
+  .btn-sair {
+    @apply inline-flex h-10 w-full items-center justify-center space-x-1 rounded-md border border-gray-300 bg-blue-600 text-sm font-medium whitespace-nowrap text-white transition-colors hover:bg-blue-700;
   }
 }
