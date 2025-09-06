@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <?php
 require __DIR__ . '/../../src/backend/functions/geral.php';
+include __DIR__ . '/../../src/backend/functions/dashBoard.php';
 ?>
 
 <head>
@@ -33,7 +34,7 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    0
+                                    <?= $total_nComecou ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Serviços
@@ -53,7 +54,7 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    0
+                                    <?= $total_eProgresso ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Serviços
@@ -73,7 +74,7 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    0
+                                    <?= $total_prontos ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Serviços
@@ -93,7 +94,7 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    0
+                                    <?= $total_finalizados ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Serviços
@@ -116,7 +117,7 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    0
+                                    <?= $total_clientes ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Total de clientes no sistema
@@ -136,7 +137,7 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    0
+                                    <?= $total_servicos ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Serviços registrados no sistema
@@ -149,14 +150,51 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
                     </div>
 
                 </div>
-                <div class="bg-white rounded-xl h-[48%] shadow-sm border border-gray-100 overflow-y-auto">
+                <div class="bg-white rounded-xl h-[48%] shadow-sm border border-gray-100">
                     <div class="px-6 py-4 border-b border-gray-100">
                         <h2 class="text-2xl font-semibold text-gray-900">Ultimos Serviços</h2>
                         <p class="pequena-descricao">Os 5 serviços mais recentes cadastrados no sistema</p>
                     </div>
-                    <div class="p-6">
+                    <div class="px-6 py-2 overflow-y-auto h-[13rem]">
                         <div class="space-y-4">
                             <!-- Puxar do banco de dados -->
+                            <?php foreach ($ultimos_servicos as $servicos): ?>
+                                <div class="flex border border-gray-200 items-center justify-between px-4 p-2 rounded-lg">
+                                    <div>
+                                        <h3 class="font-semibold text-sm text-blue-600">
+                                            <!-- Puxar no banco de dados -->
+                                            <?= $servicos['client_name'] ?>
+                                        </h3>
+                                        <div class="flex items-center space-x-2">
+                                            <p class="text-sm text-gray-600">
+                                                <?= $servicos['equipment'] ?>
+                                            </p>
+                                            <span class="text-xl text-blue-600">-</span>
+                                            <p class="text-sm text-gray-600">
+                                                <?= $servicos['problem'] ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col text-center space-y-1">
+                                        <span class="px-2 py-0.5 rounded-full text-xs font-medium text-blue-600 bg-blue-600/20">
+                                            <?php
+                                            if ($servicos['status'] == 1) {
+                                                echo  "Não Começou";
+                                            } elseif ($servicos['status'] == 2) {
+                                                echo "Em Progresso";
+                                            } elseif ($servicos['status'] == 3) {
+                                                echo "Pronto";
+                                            } elseif ($servicos['status'] == 4) {
+                                                echo "Finalizado";
+                                            }
+                                            ?>
+                                        </span>
+                                        <span class="text-sm text-blue-600">
+                                            <?= date(CONF_DATE_BR, strtotime($servicos['date'])) ?>
+                                        </span>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
