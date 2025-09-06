@@ -1,2 +1,2 @@
 .env
-assets/output.css
+src/components/output.css
