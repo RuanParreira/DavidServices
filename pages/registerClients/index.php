@@ -15,7 +15,7 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2">
                     <i class="bi bi-person-plus icons-titulo-default text-3xl"></i>
                     <h2 class="text-3xl font-bold text-gray-900">
                         Registrar Clientes

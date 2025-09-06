@@ -148,7 +148,6 @@ include __DIR__ . '/../../src/backend/functions/dashBoard.php';
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="bg-white rounded-xl h-[48%] shadow-sm border border-gray-100">
                     <div class="px-6 py-4 border-b border-gray-100">
@@ -158,7 +157,14 @@ include __DIR__ . '/../../src/backend/functions/dashBoard.php';
                     <div class="px-6 py-2 overflow-y-auto h-[13rem]">
                         <div class="space-y-4">
                             <!-- Puxar do banco de dados -->
-                            <?php foreach ($ultimos_servicos as $servicos): ?>
+                            <?php
+                            if (empty($ultimos_servicos)) {
+                                echo
+                                "<div class='text-center py-8 mt-15'>
+                                    <p class='text-gray-500'>Nenhum serviço cadastrado</p>
+                                </div>";
+                            }
+                            foreach ($ultimos_servicos as $servicos): ?>
                                 <div class="flex border border-gray-200 items-center justify-between px-4 p-2 rounded-lg">
                                     <div>
                                         <h3 class="font-semibold text-sm text-blue-600">
