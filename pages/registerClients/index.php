@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <?php
 require __DIR__ . '/../../src/backend/functions/geral.php';
+require __DIR__ . '/../../src/backend/registerClients/listClients.php';
 ?>
 
 <head>
@@ -12,6 +13,17 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
 <body>
     <main class="main-pages">
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
+        <!-- Mensagem de Sucesso -->
+        <?php if (!empty($_SESSION['success_message'])) : ?>
+            <div id="successMessage" class="successMessage">
+                <i class="bi bi-check2-circle text-blue-500 text-2xl"></i>
+                <p class="text-gray-700 text-lg">
+                    <?= $_SESSION['success_message'];
+                    unset($_SESSION['success_message']); ?>
+                </p>
+            </div>
+        <?php endif; ?>
+
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
@@ -21,78 +33,107 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
                         Registrar Clientes
                     </h2>
                 </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="layer-form-register">
                     <!-- Formulario de Cadastros -->
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                    <div class="form-register">
                         <div class="flex items-center gap-3 mb-6">
                             <i class="bi bi-person-plus text-2xl text-blue-600"></i>
                             <h2 class="text-xl font-semibold text-gray-900">
                                 Novo Cliente
                             </h2>
                         </div>
-                        <form action="" class="space-y-4">
+                        <form action="../../src/backend/registerClients/register.php" method="post" class="space-y-4">
                             <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                <label for="name" class="subTitulo-default-client">
                                     Nome Completo
                                 </label>
-                                <input id="name" name="name" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" placeholder="Digite o nome completo">
+                                <input id="name" name="name" type="text" class="input-name-client" placeholder="Digite o nome completo">
                             </div>
                             <div>
-                                <label for="cpf_cnpj" class="block text-sm font-medium text-gray-700 mb-2">
+                                <label for="cpf_cnpj" class="subTitulo-default-client">
                                     CPF
                                 </label>
                                 <div class="relative">
-                                    <i class="bi bi-person-vcard absolute left-3 top-1/2 transform -translate-y-1/2  text-gray-400 text-lg"></i>
-                                    <input id="cpf_cnpj" name="cpf_cnpj" type="text" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" placeholder="Digite o CPF/CNPJ">
+                                    <i class="bi bi-person-vcard icon-default-client"></i>
+                                    <input id="cpf_cnpj" name="cpf_cnpj" type="text" class="input-default-client" placeholder="Digite o CPF/CNPJ">
                                 </div>
                             </div>
                             <div>
-                                <label for="contato" class="block text-sm font-medium text-gray-700 mb-2">
+                                <label for="number" class="subTitulo-default-client">
                                     Contato
                                 </label>
                                 <div class="relative">
-                                    <i class="bi bi-telephone absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"></i>
-                                    <input id="contato" name="contato" type="text" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" placeholder="Telefone, WhatsApp">
+                                    <i class="bi bi-telephone icon-default-client"></i>
+                                    <input id="number" name="number" type="text" class="input-default-client" placeholder="Telefone, WhatsApp">
                                 </div>
                             </div>
-                            <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            <button type="submit" class="btn-enviar-client">
                                 Cadastrar
                             </button>
                         </form>
                     </div>
                     <!-- Lista de Clientes Cadastrados -->
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                        <div class="flex items-center gap-3 mb-6">
-                            <i class="bi bi-person text-2xl text-blue-600"></i>
-                            <h2 class="text-xl font-semibold text-gray-900">
-                                Clientes Cadastrados
-                            </h2>
-                        </div>
-                        <div class="mb-6">
-                            <div class="relative">
-                                <i class="bi bi-search absolute left-3 top-1/2 transform -translate-y-1/2 text-lg text-gray-400"></i>
-                                <input type="text" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" placeholder="Buscar por nome ou CPF">
+                    <div class="layer-lista-clients">
+                        <div class="flex items-center mb-6">
+                            <div class="w-full flex gap-3">
+                                <i class="bi bi-person text-2xl text-blue-600"></i>
+                                <h2 class="text-xl font-semibold text-gray-900">
+                                    Clientes Cadastrados
+                                </h2>
+                            </div>
+                            <div>
+                                <?php if (!empty($search)) : ?>
+                                    <button type="button" id="clearSearchBtn" class="flex items-center space-x-2
+                                    text-red-600 cursor-pointer hover:text-red-700
+                                    transition-colors bg-red-600/10 px-4 py-2 rounded-lg">
+                                        <i class="bi bi-trash text-xl"></i>
+                                        <span>Limpar</span>
+                                    </button>
+                                <?php endif; ?>
                             </div>
                         </div>
-                        <div class="space-y-3 max-h-96 overflow-y-auto">
+                        <form method="get" class="mb-6 flex items-center space-x-4">
+                            <div class="relative w-full">
+                                <i class="bi bi-search icon-search-client"></i>
+                                <input type="text" name="search" id="searchInput" class="input-search-client" placeholder="Buscar por nome ou CPF"
+                                    value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
+                            </div>
+                            <div>
+                                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors space-x-2 flex items-center">
+                                    <i class="bi bi-search"></i>
+                                    <span>Buscar</span>
+                                </button>
+                            </div>
+                        </form>
+                        <div class="layer-cards-client">
                             <!-- Buscar no Banco de Dados  -->
-                            <div class="border-2 border-gray-200 bg-gray-50 rounded-lg py-2 px-4 hover:bg-gray-100 transition-colors">
-                                <h3 class="font-semibold text-gray-900 mb-1">
-                                    nome
-                                </h3>
-                                <p class="text-sm text-gray-600 mb-1">
-                                    CPF: 000.000.000-00
-                                </p>
-                                <p class="text-sm text-gray-600">
-                                    Contato: (00) 00000-0000
-                                </p>
-                            </div>
+                            <?php
+                            if (empty($resultClients)) {
+                                echo
+                                "<div class='text-center py-8 flex flex-col'>
+                                <i class='bi bi-person text-gray-500 text-6xl'></i>
+                                    <p class='text-gray-500'>Nenhum Cliente Cadastrado</p>
+                                </div>";
+                            }
+                            foreach ($resultClients as $client): ?>
+                                <div class="cont-cards-client">
+                                    <h3 class="font-semibold text-gray-900 mb-1">
+                                        <?= htmlspecialchars($client['name']); ?>
+                                    </h3>
+                                    <p class="text-sm text-gray-600 mb-1">
+                                        CPF: <?= htmlspecialchars($client['cpf_cnpj']); ?>
+                                    </p>
+                                    <p class="text-sm text-gray-600">
+                                        Contato: <?= htmlspecialchars($client['number']); ?>
+                                    </p>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
             </div>
     </main>
+    <script src="../../src/scripts/registeredUser.js"></script>
 </body>
 
 </html>

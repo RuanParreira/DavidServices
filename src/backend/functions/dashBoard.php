@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/../conn.php';
 
+
 // Numero de Clientes
 try {
     $stmt = $pdo->prepare("SELECT COUNT(*) AS total_clientes FROM clients");

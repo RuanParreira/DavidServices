@@ -74,7 +74,7 @@ include __DIR__ . '/../../src/backend/functions/dashBoard.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    <?= $total_prontos ?>
+                                    <?= htmlspecialchars($total_prontos); ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Serviços
@@ -94,7 +94,7 @@ include __DIR__ . '/../../src/backend/functions/dashBoard.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    <?= $total_finalizados ?>
+                                    <?= htmlspecialchars($total_finalizados); ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Serviços
@@ -117,7 +117,7 @@ include __DIR__ . '/../../src/backend/functions/dashBoard.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    <?= $total_clientes ?>
+                                    <?= htmlspecialchars($total_clientes); ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Total de clientes no sistema
@@ -137,7 +137,7 @@ include __DIR__ . '/../../src/backend/functions/dashBoard.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    <?= $total_servicos ?>
+                                    <?= htmlspecialchars($total_servicos); ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Serviços registrados no sistema
@@ -169,15 +169,15 @@ include __DIR__ . '/../../src/backend/functions/dashBoard.php';
                                     <div>
                                         <h3 class="font-semibold text-sm text-blue-600">
                                             <!-- Puxar no banco de dados -->
-                                            <?= $servicos['client_name'] ?>
+                                            <?= htmlspecialchars($servicos['client_name']); ?>
                                         </h3>
                                         <div class="flex items-center space-x-2">
                                             <p class="text-sm text-gray-600">
-                                                <?= $servicos['equipment'] ?>
+                                                <?= htmlspecialchars($servicos['equipment']); ?>
                                             </p>
                                             <span class="text-xl text-blue-600">-</span>
                                             <p class="text-sm text-gray-600">
-                                                <?= $servicos['problem'] ?>
+                                                <?= htmlspecialchars($servicos['problem']); ?>
                                             </p>
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@ include __DIR__ . '/../../src/backend/functions/dashBoard.php';
                                             ?>
                                         </span>
                                         <span class="text-sm text-blue-600">
-                                            <?= date(CONF_DATE_BR, strtotime($servicos['date'])) ?>
+                                            <?= htmlspecialchars(date(CONF_DATE_BR, strtotime($servicos['date']))); ?>
                                         </span>
                                     </div>
                                 </div>
