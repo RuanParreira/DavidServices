@@ -10,6 +10,7 @@ try {
     echo "Erro na conexão: " . $e->getMessage();
 }
 
+//Buscar Clients Registrados com Filtro
 try {
     $search = isset($_GET['search']) ? trim($_GET['search']) : '';
     if ($search !== '') {
