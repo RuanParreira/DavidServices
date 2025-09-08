@@ -42,7 +42,8 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                 Novo Cliente
                             </h2>
                         </div>
-                        <form action="../../src/backend/registerClients/register.php" method="post" class="space-y-4">
+                        <form action="../../src/backend/registerClients/register.php" method="post" class="space-y-4"
+                            autocomplete="off">
                             <div>
                                 <label for="name" class="subTitulo-default-client">
                                     Nome Completo
@@ -74,31 +75,30 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                     </div>
                     <!-- Lista de Clientes Cadastrados -->
                     <div class="layer-lista-clients">
-                        <div class="flex items-center mb-6">
-                            <div class="w-full flex gap-3">
-                                <i class="bi bi-person text-2xl text-blue-600"></i>
-                                <h2 class="text-xl font-semibold text-gray-900">
-                                    Clientes Cadastrados
-                                </h2>
-                            </div>
-                            <div>
-                                <?php if (!empty($search)) : ?>
-                                    <button type="button" id="clearSearchBtn" class="flex items-center space-x-2
-                                    text-red-600 cursor-pointer hover:text-red-700
-                                    transition-colors bg-red-600/10 px-4 py-2 rounded-lg">
-                                        <i class="bi bi-trash text-xl"></i>
-                                        <span>Limpar</span>
-                                    </button>
-                                <?php endif; ?>
-                            </div>
+                        <div class="flex items-center mb-6 space-x-1">
+                            <i class="bi bi-person text-2xl text-blue-600"></i>
+                            <h2 class="text-xl font-semibold text-gray-900">
+                                Clientes Cadastrados
+                            </h2>
                         </div>
-                        <form method="get" class="mb-6 flex items-center space-x-4">
+                        <!-- Campo de Busca dos Clientes -->
+                        <form method="get" class="mb-6 flex items-center space-x-4" autocomplete="off">
                             <div class="relative w-full">
                                 <i class="bi bi-search icon-search-client"></i>
                                 <input type="text" name="search" id="searchInput" class="input-search-client" placeholder="Buscar por nome ou CPF"
                                     value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
                             </div>
-                            <div>
+                            <div class="flex space-x-2">
+                                <?php if (!empty($search)) : ?>
+                                    <div>
+                                        <button type="button" id="clearSearchBtn" class="flex items-center space-x-2
+                                    text-red-600 cursor-pointer hover:text-red-700
+                                     bg-red-600/10 px-4 h-full rounded-lg
+                                    transition-colors">
+                                            <i class="bi bi-trash text-xl"></i>
+                                        </button>
+                                    </div>
+                                <?php endif; ?>
                                 <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors space-x-2 flex items-center">
                                     <i class="bi bi-search"></i>
                                     <span>Buscar</span>
@@ -106,28 +106,27 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                             </div>
                         </form>
                         <div class="layer-cards-client">
-                            <!-- Buscar no Banco de Dados  -->
-                            <?php
-                            if (empty($resultClients)) {
-                                echo
-                                "<div class='text-center py-8 flex flex-col'>
-                                <i class='bi bi-person text-gray-500 text-6xl'></i>
-                                    <p class='text-gray-500'>Nenhum Cliente Cadastrado</p>
-                                </div>";
-                            }
-                            foreach ($resultClients as $client): ?>
-                                <div class="cont-cards-client">
-                                    <h3 class="font-semibold text-gray-900 mb-1">
-                                        <?= htmlspecialchars($client['name']); ?>
-                                    </h3>
-                                    <p class="text-sm text-gray-600 mb-1">
-                                        CPF: <?= htmlspecialchars($client['cpf_cnpj']); ?>
-                                    </p>
-                                    <p class="text-sm text-gray-600">
-                                        Contato: <?= htmlspecialchars($client['number']); ?>
-                                    </p>
+                            <!-- Lista de Clientes Cadastrados  -->
+                            <?php if (empty($resultClients)): ?>
+                                <div class="text-center py-8 flex flex-col">
+                                    <i class="bi bi-person text-gray-500 text-6xl"></i>
+                                    <p class="text-gray-500">Nenhum Cliente Cadastrado</p>
                                 </div>
-                            <?php endforeach; ?>
+                            <?php else: ?>
+                                <?php foreach ($resultClients as $client): ?>
+                                    <div class="cont-cards-client">
+                                        <h3 class="font-semibold text-gray-900 mb-1">
+                                            <?= htmlspecialchars($client['name']); ?>
+                                        </h3>
+                                        <p class="text-sm text-gray-600 mb-1">
+                                            CPF: <?= htmlspecialchars($client['cpf_cnpj']); ?>
+                                        </p>
+                                        <p class="text-sm text-gray-600">
+                                            Contato: <?= htmlspecialchars($client['number']); ?>
+                                        </p>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

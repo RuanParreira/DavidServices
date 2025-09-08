@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <?php
 require __DIR__ . '/../../src/backend/functions/geral.php';
-include __DIR__ . '/../../src/backend/functions/dashBoard.php';
+require __DIR__ . '/../../src/backend/functions/dashBoard.php';
 ?>
 
 <head>
