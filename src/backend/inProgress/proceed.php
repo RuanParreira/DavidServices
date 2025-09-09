@@ -8,19 +8,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? null;
 
     if (!$id || !filter_var($id, FILTER_VALIDATE_INT)) {
-        header('Location: ../../../pages/notStart?error=invalid_id');
+        header('Location: ../../../pages/inProgress?error=invalid_id');
         exit;
     }
 
     try {
         $stmt = $pdo->prepare('UPDATE services SET status = :status WHERE id = :id');
-        $stmt->bindValue(':status', 2, PDO::PARAM_INT);
+        $stmt->bindValue(':status', 3, PDO::PARAM_INT);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        $_SESSION['success_message'] = 'Serviço iniciado com sucesso!';
-        header('Location: ../../../pages/notStart');
+        $_SESSION['success_message'] = 'Serviço Finalizado Com Sucesso!';
+        header('Location: ../../../pages/inProgress');
         exit;
     } catch (PDOException $e) {
-        echo "Erro ao iniciar serviço: " . $e->getMessage();
+        echo "Erro ao finalizar serviço: " . $e->getMessage();
     }
 }

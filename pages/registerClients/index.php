@@ -14,15 +14,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
     <main class="main-pages">
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
         <!-- Mensagem de Sucesso -->
-        <?php if (!empty($_SESSION['success_message'])) : ?>
-            <div id="successMessage" class="successMessage">
-                <i class="bi bi-check2-circle text-blue-500 text-2xl"></i>
-                <p class="text-gray-700 text-lg">
-                    <?= $_SESSION['success_message'];
-                    unset($_SESSION['success_message']); ?>
-                </p>
-            </div>
-        <?php endif; ?>
+        <?php include __DIR__ . '/../../src/includes/successMessage.php'; ?>
 
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
@@ -132,8 +124,10 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
     </main>
-    <script src="../../src/scripts/registeredUser.js"></script>
+    <script src="../../src/scripts/successMessage.js"></script>
 </body>
 
 </html>

@@ -5,9 +5,10 @@ setTimeout(function () {
   }
 }, 3000);
 
-document
-  .getElementById("clearSearchBtn")
-  .addEventListener("click", function () {
+var clearBtn = document.getElementById("clearSearchBtn");
+if (clearBtn) {
+  clearBtn.addEventListener("click", function () {
     document.getElementById("searchInput").value = "";
     window.location.href = window.location.pathname;
   });
+}

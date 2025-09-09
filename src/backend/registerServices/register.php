@@ -22,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $stmt->bindValue(':p', $problem, PDO::PARAM_STR);
         $stmt->bindValue(':d', $date, PDO::PARAM_STR);
         $stmt->execute();
-        echo 'Serviço registrado com sucesso!';
+        $_SESSION['success_message'] = 'Serviço registrado com sucesso.';
+        header('Location: ../../../pages/registerServices');
+        exit;
     } catch (PDOException $e) {
         error_log($e->getMessage());
         die('Erro ao registrar serviço: ' . $e->getMessage());

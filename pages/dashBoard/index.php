@@ -13,6 +13,16 @@ require __DIR__ . '/../../src/backend/functions/dashBoard.php';
 <body>
     <main class="main-pages">
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
+        <!-- Mensagem de Login -->
+        <?php if (!empty($_SESSION['welcome_message'])): ?>
+            <div id="successMessage" class="successMessage">
+                <i class="bi bi-check2-circle text-blue-500 text-2xl"></i>
+                <p class="text-gray-700 text-lg">
+                    <?= htmlspecialchars($_SESSION['welcome_message']);
+                    unset($_SESSION['welcome_message']); ?>
+                </p>
+            </div>
+        <?php endif; ?>
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
@@ -208,6 +218,7 @@ require __DIR__ . '/../../src/backend/functions/dashBoard.php';
         </div>
     </main>
 
+    <script src="../../src/scripts/successMessage.js"></script>
 </body>
 
 </html>

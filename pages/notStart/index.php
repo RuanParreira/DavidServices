@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <?php
 require __DIR__ . '/../../src/backend/functions/geral.php';
-require __DIR__ . '/../../src/backend/notStart/listServices.php'
+require __DIR__ . '/../../src/backend/functions/listServices.php';
 ?>
 
 <head>
@@ -13,6 +13,8 @@ require __DIR__ . '/../../src/backend/notStart/listServices.php'
 <body>
     <main class="main-pages">
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
+        <!-- Mensagem de Sucesso -->
+        <?php include __DIR__ . '/../../src/includes/successMessage.php'; ?>
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
@@ -99,13 +101,13 @@ require __DIR__ . '/../../src/backend/notStart/listServices.php'
                                         </div>
                                     </div>
                                     <div class="flex gap-3">
-                                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 w-full">
+                                        <button class="px-4 py-2 cursor-pointer bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 w-full">
                                             <i class="bi bi-eye"></i>
                                             Detalhes
                                         </button>
                                         <form action="../../src/backend/notStart/proceed.php" method="post" class="w-full">
                                             <input type="hidden" name="id" value="<?= htmlspecialchars($services['id']) ?>">
-                                            <button type="submit" class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 w-full">
+                                            <button type="submit" class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium cursor-pointer hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 w-full">
                                                 Avançar
                                                 <i class="bi bi-arrow-right"></i>
                                             </button>
@@ -119,7 +121,7 @@ require __DIR__ . '/../../src/backend/notStart/listServices.php'
             </div>
         </div>
     </main>
-
+    <script src="../../src/scripts/successMessage.js"></script>
 </body>
 
 </html>

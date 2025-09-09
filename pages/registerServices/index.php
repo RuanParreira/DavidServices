@@ -13,6 +13,8 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
 <body>
     <main class="main-pages">
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
+        <!-- Mensagem de Sucesso -->
+        <?php include __DIR__ . '/../../src/includes/successMessage.php'; ?>
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
@@ -88,6 +90,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
         </div>
     </main>
     <script src="../../src/scripts/registerServices.js"></script>
+    <script src="../../src/scripts/successMessage.js"></script>
 </body>
 
 </html>
