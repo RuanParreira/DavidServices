@@ -16,19 +16,20 @@ require __DIR__ . '/../../src/backend/functions/dashBoard.php';
         <!-- Mensagem de Login -->
         <?php if (!empty($_SESSION['welcome_message'])): ?>
             <div id="successMessage" class="successMessage">
-                <i class="bi bi-check2-circle text-blue-500 text-2xl"></i>
-                <p class="text-gray-700 text-lg">
+                <i class="bi bi-check2-circle"></i>
+                <p>
                     <?= htmlspecialchars($_SESSION['welcome_message']);
                     unset($_SESSION['welcome_message']); ?>
                 </p>
             </div>
         <?php endif; ?>
+        <!-- Conteudo da Página -->
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
-                <div class="flex items-center gap-3">
-                    <i class="bi bi-graph-up-arrow icons-titulo-default"></i>
-                    <h2 class="text-3xl font-bold text-gray-900">
+                <div class="layer-titulo">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <h2>
                         DashBoard
                     </h2>
                 </div>
@@ -44,7 +45,7 @@ require __DIR__ . '/../../src/backend/functions/dashBoard.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    <?= $total_nComecou ?>
+                                    <?= htmlspecialchars($total_nComecou) ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Serviços
@@ -64,7 +65,7 @@ require __DIR__ . '/../../src/backend/functions/dashBoard.php';
                                 </p>
                                 <!-- Puxar com o banco de dados -->
                                 <p class="numero-cards-informacao">
-                                    <?= $total_eProgresso ?>
+                                    <?= htmlspecialchars($total_eProgresso) ?>
                                 </p>
                                 <p class="pequena-descricao"">
                                     Serviços
@@ -167,50 +168,49 @@ require __DIR__ . '/../../src/backend/functions/dashBoard.php';
                     <div class="px-6 py-2 overflow-y-auto h-[13rem]">
                         <div class="space-y-4">
                             <!-- Puxar do banco de dados -->
-                            <?php
-                            if (empty($ultimos_servicos)) {
-                                echo
-                                "<div class='text-center py-8 mt-15'>
+                            <?php if (empty($ultimos_servicos)): ?>
+                                <div class='text-center py-8 mt-15'>
                                     <p class='text-gray-500'>Nenhum serviço cadastrado</p>
-                                </div>";
-                            }
-                            foreach ($ultimos_servicos as $servicos): ?>
-                                <div class="flex border border-gray-200 items-center justify-between px-4 p-2 rounded-lg">
-                                    <div>
-                                        <h3 class="font-semibold text-sm text-blue-600">
-                                            <!-- Puxar no banco de dados -->
-                                            <?= htmlspecialchars($servicos['client_name']); ?>
-                                        </h3>
-                                        <div class="flex items-center space-x-2">
-                                            <p class="text-sm text-gray-600">
-                                                <?= htmlspecialchars($servicos['equipment']); ?>
-                                            </p>
-                                            <span class="text-xl text-blue-600">-</span>
-                                            <p class="text-sm text-gray-600">
-                                                <?= htmlspecialchars($servicos['problem']); ?>
-                                            </p>
+                                </div>
+                            <?php else: ?>
+                                <?php foreach ($ultimos_servicos as $servicos): ?>
+                                    <div class="flex border border-gray-200 items-center justify-between px-4 p-2 rounded-lg">
+                                        <div>
+                                            <h3 class="font-semibold text-sm text-blue-600">
+                                                <!-- Puxar no banco de dados -->
+                                                <?= htmlspecialchars($servicos['client_name']); ?>
+                                            </h3>
+                                            <div class="flex items-center space-x-2">
+                                                <p class="text-sm text-gray-600">
+                                                    <?= htmlspecialchars($servicos['equipment']); ?>
+                                                </p>
+                                                <span class="text-xl text-blue-600">-</span>
+                                                <p class="text-sm text-gray-600">
+                                                    <?= htmlspecialchars($servicos['problem']); ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col text-center space-y-1">
+                                            <span class="px-2 py-0.5 rounded-full text-xs font-medium text-blue-600 bg-blue-600/20">
+                                                <?php
+                                                if ($servicos['status'] == 1) {
+                                                    echo  htmlspecialchars("Não Começou");
+                                                } elseif ($servicos['status'] == 2) {
+                                                    echo htmlspecialchars("Em Progresso");
+                                                } elseif ($servicos['status'] == 3) {
+                                                    echo htmlspecialchars("Pronto");
+                                                } elseif ($servicos['status'] == 4) {
+                                                    echo htmlspecialchars("Finalizado");
+                                                }
+                                                ?>
+                                            </span>
+                                            <span class="text-sm text-blue-600">
+                                                <?= htmlspecialchars(date(CONF_DATE_BR, strtotime($servicos['date']))); ?>
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="flex flex-col text-center space-y-1">
-                                        <span class="px-2 py-0.5 rounded-full text-xs font-medium text-blue-600 bg-blue-600/20">
-                                            <?php
-                                            if ($servicos['status'] == 1) {
-                                                echo  "Não Começou";
-                                            } elseif ($servicos['status'] == 2) {
-                                                echo "Em Progresso";
-                                            } elseif ($servicos['status'] == 3) {
-                                                echo "Pronto";
-                                            } elseif ($servicos['status'] == 4) {
-                                                echo "Finalizado";
-                                            }
-                                            ?>
-                                        </span>
-                                        <span class="text-sm text-blue-600">
-                                            <?= htmlspecialchars(date(CONF_DATE_BR, strtotime($servicos['date']))); ?>
-                                        </span>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@ require __DIR__ . '/../../src/backend/functions/dashBoard.php';
         </div>
     </main>
 
-    <script src="../../src/scripts/successMessage.js"></script>
+    <script src="../../src/scripts/resultMessage.js"></script>
 </body>
 
 </html>

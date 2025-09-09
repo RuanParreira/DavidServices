@@ -13,15 +13,16 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
 <body>
     <main class="main-pages">
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
-        <!-- Mensagem de Sucesso -->
-        <?php include __DIR__ . '/../../src/includes/successMessage.php'; ?>
+        <!-- Mensagem de Sucesso ou Erro-->
+        <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
 
+        <!-- Conteudo Principal -->
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
-                <div class="flex items-center gap-2">
-                    <i class="bi bi-person-plus icons-titulo-default text-3xl"></i>
-                    <h2 class="text-3xl font-bold text-gray-900">
+                <div class="layer-titulo">
+                    <i class="bi bi-person-plus text-3xl"></i>
+                    <h2>
                         Registrar Clientes
                     </h2>
                 </div>
@@ -68,9 +69,9 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                         </div>
                         <!-- Lista de Clientes Cadastrados -->
                         <div class="layer-lista-clients">
-                            <div class="flex items-center mb-6 space-x-1">
-                                <i class="bi bi-person text-2xl text-blue-600"></i>
-                                <h2 class="text-xl font-semibold text-gray-900">
+                            <div class="titulo-cards-client">
+                                <i class="bi bi-person"></i>
+                                <h2>
                                     Clientes Cadastrados
                                 </h2>
                             </div>
@@ -84,15 +85,12 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                 <div class="flex space-x-2">
                                     <?php if (!empty($search)) : ?>
                                         <div>
-                                            <button type="button" id="clearSearchBtn" class="flex items-center space-x-2
-                                    text-red-600 cursor-pointer hover:text-red-700
-                                     bg-red-600/10 px-4 h-full rounded-lg
-                                    transition-colors">
+                                            <button type="button" id="clearSearchBtn" class="btn-limpar-busca">
                                                 <i class="bi bi-trash text-xl"></i>
                                             </button>
                                         </div>
                                     <?php endif; ?>
-                                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors space-x-2 flex items-center">
+                                    <button type="submit" class="btn-buscar">
                                         <i class="bi bi-search"></i>
                                         <span>Buscar</span>
                                     </button>
@@ -127,7 +125,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
             </div>
         </div>
     </main>
-    <script src="../../src/scripts/successMessage.js"></script>
+    <script src="../../src/scripts/resultMessage.js"></script>
 </body>
 
 </html>

@@ -8,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? null;
 
     if (!$id || !filter_var($id, FILTER_VALIDATE_INT)) {
-        header('Location: ../../../pages/inProgress?error=invalid_id');
+        $_SESSION['error_message'] = 'ID de serviço inválido.';
+        header('Location: ../../../pages/inProgress');
         exit;
     }
 

@@ -8,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? null;
 
     if (!$id || !filter_var($id, FILTER_VALIDATE_INT)) {
-        header('Location: ../../../pages/notStart?error=invalid_id');
+        $_SESSION['error_message'] = 'ID de serviço inválido.';
+        header('Location: ../../../pages/notStart');
         exit;
     }
 
@@ -21,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ../../../pages/notStart');
         exit;
     } catch (PDOException $e) {
-        echo "Erro ao iniciar serviço: " . $e->getMessage();
+        $_SESSION['error_message'] = 'Erro ao iniciar serviço: ' . $e->getMessage();
+        header('Location: ../../../pages/notStart');
+        exit;
     }
 }

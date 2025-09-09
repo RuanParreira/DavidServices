@@ -11,9 +11,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $date = trim(strip_tags($_GET['date'] ?? ''));
 
     if (empty($user_id) || empty($id_client) || empty($equipment) || empty($problem) || empty($date)) {
-        echo "Todos os campos são obrigatórios.";
+        $_SESSION['error_message'] = 'Por favor, preencha todos os campos.';
+        header('Location: ../../../pages/registerServices');
         exit;
     }
+
+    if (strlen($equipment) > 100) {
+        $_SESSION['error_message'] = 'O equipamento deve ter no máximo 100 caracteres.';
+        header('Location: ../../../pages/registerServices');
+        exit;
+    }
+
+    if (strlen($problem) > 255) {
+        $_SESSION['error_message'] = 'O problema descrito deve ter no máximo 255 caracteres.';
+        header('Location: ../../../pages/registerServices');
+        exit;
+    }
+
     try {
         $stmt = $pdo->prepare('INSERT INTO services (id_client, id_user, equipment, problem, date) VALUES (:id_client, :id_user, :eq, :p, :d)');
         $stmt->bindValue(':id_client', $id_client, PDO::PARAM_INT);
@@ -27,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         exit;
     } catch (PDOException $e) {
         error_log($e->getMessage());
-        die('Erro ao registrar serviço: ' . $e->getMessage());
+        $_SESSION['error_message'] = 'Erro ao registrar serviço: ' . $e->getMessage();
+        header('Location: ../../../pages/registerServices');
+        exit;
     }
 }

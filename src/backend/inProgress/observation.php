@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/../conn.php';
+require __DIR__ . '/../functions/geral.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? null;
@@ -10,9 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindValue(':observation', $observation, PDO::PARAM_STR);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        header('Location: ../../../pages/inProgress/');
+        $_SESSION['success_message'] = 'Observação alterada com sucesso!';
+        header('Location: ../../../pages/inProgress');
         exit;
     } catch (PDOException $e) {
-        echo "Erro ao adicionar observação: " . $e->getMessage();
+        $_SESSION['error_message'] = 'Erro ao adicionar observação: ' . $e->getMessage();
+        header('Location: ../../../pages/inProgress');
+        exit;
     }
 }

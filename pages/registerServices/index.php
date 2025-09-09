@@ -13,73 +13,73 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
 <body>
     <main class="main-pages">
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
-        <!-- Mensagem de Sucesso -->
-        <?php include __DIR__ . '/../../src/includes/successMessage.php'; ?>
+        <!-- Mensagem de Sucesso ou Erro-->
+        <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
+
+        <!-- Conteudo Da Pagina -->
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
-                <div class="flex items-center gap-2">
-                    <i class="bi bi-clipboard-plus icons-titulo-default text-
-                    3xl"></i>
-                    <h2 class="text-3xl font-bold text-gray-900">
+                <div class="layer-titulo">
+                    <i class="bi bi-clipboard-plus"></i>
+                    <h2>
                         Cadastrar Serviço
                     </h2>
                 </div>
                 <!-- Conteudo Da Pagina -->
                 <div class="flex justify-center">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 max-w-2xl w-full">
-                        <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                    <div class="layer-form-services ">
+                        <h2 class="titulo-form-services ">
                             Novo Serviço
                         </h2>
                         <!-- Se não houver clientes cadastrados, não será possível cadastrar um serviço. -->
                         <?php if (empty($resultClients)): ?>
-                            <div class='bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-center gap-3'>
-                                <i class='bi bi-exclamation-triangle text-yellow-600 text-lg'></i>
-                                <p class='text-yellow-800'>
+                            <div class="layer-nCadastro">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                <p>
                                     É necessário cadastrar pelo menos um cliente antes de criar um serviço.
                                 </p>
                             </div>
                         <?php else: ?>
                             <form action="../../src/backend/registerServices/register.php" class="space-y-4" method="GET" autocomplete="off">
                                 <div>
-                                    <label for="search-client" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <label for="search-client" class="subtitulo-default-services ">
                                         Cliente
                                     </label>
                                     <!-- Pega o Cliente Com o AutoComplete -->
                                     <div class="relative">
                                         <div class="relative">
-                                            <i class="bi bi-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                                            <input type="text" name="name" id="search-client" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-transform" placeholder="Pesquisar cliente pelo nome, CPF ou número">
+                                            <i class="bi bi-search icon-search-services"></i>
+                                            <input type="text" name="name" id="search-client" class="input-client-services" placeholder="Pesquisar cliente pelo nome, CPF ou número">
                                         </div>
                                         <div id="suggestion-container"
-                                            class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                                            class="hidden suggestion-clients-services">
                                         </div>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id_client" id="selected-client-id" value="ID_DO_CLIENTE">
                                 <!-- Equipamento do cliente -->
                                 <div>
-                                    <label for="equipment" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <label for="equipment" class="subtitulo-default-services ">
                                         Equipamento
                                     </label>
-                                    <input type="text" id="equipment" name="equipment" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 
-                                focus:ring-blue-600 focus:border-transparent" placeholder="Ex: Notebook Dell, Smartphone Samsung..." autocomplete="off">
+                                    <input type="text" id="equipment" name="equipment" class="input-equipamento-services" placeholder="Ex: Notebook Dell, Smartphone Samsung..." autocomplete="off">
                                 </div>
                                 <!-- Problema Detectado -->
                                 <div>
-                                    <label for="problem" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <label for="problem" class="subtitulo-default-services ">
                                         Problema Detectado
                                     </label>
-                                    <textarea rows="3" name="problem" id="problem" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Descreva o problema reportado pelo cliente..."> </textarea>
+                                    <textarea rows="3" name="problem" id="problem" class="input-problem-services" placeholder="Descreva o problema reportado pelo cliente..." /></textarea>
                                 </div>
                                 <!-- Data do Serviço -->
                                 <div>
-                                    <label for="" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <label for="" class="subtitulo-default-services ">
                                         Data
                                     </label>
-                                    <input type="date" name="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" value="<?php echo htmlspecialchars(date('Y-m-d')); ?>">
+                                    <input type="date" name="date" class="date-services" value="<?php echo htmlspecialchars(date('Y-m-d')); ?>">
                                 </div>
-                                <button type="submit" class="w-full cursor-pointer bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                                <button type="submit" class="btn-enviar-services">
                                     Cadastrar Serviço
                                 </button>
                             </form>
@@ -90,7 +90,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
         </div>
     </main>
     <script src="../../src/scripts/registerServices.js"></script>
-    <script src="../../src/scripts/successMessage.js"></script>
+    <script src="../../src/scripts/resultMessage.js"></script>
 </body>
 
 </html>

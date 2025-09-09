@@ -1,0 +1,42 @@
+@layer components {
+  .layer-nCadastro {
+    @apply flex items-center gap-3 rounded-lg border border-yellow-200 bg-yellow-50 p-4;
+    i {
+      @apply text-lg text-yellow-600;
+    }
+    p {
+      @apply text-yellow-800;
+    }
+  }
+
+  .layer-form-services {
+    @apply w-full max-w-2xl rounded-xl border border-gray-100 bg-white p-6 shadow-sm;
+  }
+  .titulo-form-services {
+    @apply mb-6 text-xl font-semibold text-gray-900;
+  }
+  .subtitulo-default-services {
+    @apply mb-2 block text-sm font-medium text-gray-700;
+  }
+  .icon-search-services {
+    @apply absolute top-1/2 left-3 -translate-y-1/2 transform text-gray-400;
+  }
+  .input-client-services {
+    @apply w-full rounded-lg border border-gray-300 py-2 pr-4 pl-10 transition-transform focus:border-transparent focus:ring-2 focus:ring-blue-600;
+  }
+  .suggestion-clients-services {
+    @apply absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-lg border border-gray-300 bg-white shadow-lg;
+  }
+  .input-equipamento-services {
+    @apply w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-600;
+  }
+  .input-problem-services {
+    @apply w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-600;
+  }
+  .date-services {
+    @apply w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-600;
+  }
+  .btn-enviar-services {
+    @apply mt-6 mb-6 w-full cursor-pointer rounded-lg bg-blue-600 px-6 py-4 font-medium text-white transition-colors hover:bg-blue-700;
+  }
+}
