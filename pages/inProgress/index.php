@@ -29,7 +29,7 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
                 </div>
                 <!-- Conteudo Da Pagina -->
                 <?php if (empty($list_iniciados)): ?>
-                    <div class="layer-naoEncontrado ">
+                    <div class="layer-naoEncontrado">
                         <i class="bi bi-play-circle"></i>
                         <h3>
                             Nenhum serviço em progresso

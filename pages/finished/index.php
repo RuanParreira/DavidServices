@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <?php
 require __DIR__ . '/../../src/backend/functions/geral.php';
+require __DIR__ . '/../../src/backend/functions/listServices.php';
 ?>
 
 <head>
@@ -12,16 +13,121 @@ require __DIR__ . '/../../src/backend/functions/geral.php';
 <body>
     <main class="main-pages">
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
+        <!-- Mensagem de Sucesso -->
+        <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
-                <div class="flex items-center gap-2">
+                <div class="layer-titulo">
                     <i class="bi bi-archive icons-titulo-default text-2xl"></i>
-                    <h2 class="text-3xl font-bold text-gray-900">
+                    <h2>
                         Serviços - Finalizados
                     </h2>
+                    <span class="bg-green-100 text-green-600">
+                        <?= htmlspecialchars($total_finalizados) . ' Serviços' ?>
+                    </span>
                 </div>
                 <!-- Conteudo Da Pagina -->
+                <div class="layer-page-finalizados">
+                    <h2 class="titulo-busca-finalizados">
+                        Filtros de Busca
+                    </h2>
+                    <div class="layer-search-finalizados ">
+                        <div>
+                            <label for="search" class="titulo-search-finalizados">
+                                Buscar por nome, CPF ou equipamento
+                            </label>
+                            <div class="relative">
+                                <i class="bi bi-search icons-search-finalizados"></i>
+                                <input type="text" name="search" id="search" class="input-search-finalizados" placeholder="Digite para buscar...">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="dataChegada" class="titulo-search-finalizados">
+                                Data Chegada
+                            </label>
+                            <div class="relative">
+                                <i class="bi bi-calendar icons-search-finalizados"></i>
+                                <input type="date" name="dataChegada" id="dataChegada" class="input-search-finalizados">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="dataEntregue" class="titulo-search-finalizados">
+                                Data Entregue
+                            </label>
+                            <div class="relative">
+                                <i class="bi bi-calendar icons-search-finalizados"></i>
+                                <input type="date" name="dataEntregue" id="dataEntregue" class="input-search-finalizados">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layer-tabela-finalizados">
+                    <div class="titulo-tabela-finalizados">
+                        <h2>
+                            Resultados
+                        </h2>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <?php if (empty($list_finalizados)): ?>
+                            <div class="titulo-naoEncontrado-finalizados">
+                                <i class="bi bi-archive"></i>
+                                <h3>
+                                    Nenhum serviço finalizado
+                                </h3>
+                                <p>
+                                    Complete alguns serviços para vê-los aqui.
+                                </p>
+                            </div>
+                        <?php else: ?>
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="titulo-colunas">Cliente</th>
+                                        <th class="titulo-colunas">Equipamento</th>
+                                        <th class="titulo-colunas">Problema</th>
+                                        <th class="titulo-colunas">Observação</th>
+                                        <th class="titulo-colunas">Data Chegada</th>
+                                        <th class="titulo-colunas">Data Entregue</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <?php foreach ($list_finalizados as $services): ?>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4">
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-900">
+                                                        <?= htmlspecialchars($services['name']) ?>
+                                                    </p>
+                                                    <p class="text-sm text-gray-500">
+                                                        <?= htmlspecialchars($services['cpf_cnpj']) ?>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td class="linhas-tabela">
+                                                <?= htmlspecialchars($services['equipment']) ?>
+                                            </td>
+                                            <td class="linhas-tabela max-w-xs">
+                                                <p class="truncate">
+                                                    <?= htmlspecialchars($services['problem']) ?>
+                                                </p>
+                                            </td>
+                                            <td class="linhas-tabela text-gray-500">
+                                                <?= htmlspecialchars($services['observation']) ?: 'Nenhuma observação' ?>
+                                            </td>
+                                            <td class="linhas-tabela">
+                                                <?= htmlspecialchars(date(CONF_DATE_BR, strtotime($services['date']))) ?>
+                                            </td>
+                                            <td class="linhas-tabela">
+                                                <?= htmlspecialchars(date(CONF_DATE_BR, strtotime($services['updated_at']))) ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        <?php endif; ?>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

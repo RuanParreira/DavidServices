@@ -4,7 +4,7 @@ require __DIR__ . '/../functions/geral.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? null;
-    $observation = $_POST['observation'] ?? null;
+    $observation = trim(strip_tags($_POST['observation'])) ?? null;
 
     try {
         $stmt = $pdo->prepare('UPDATE services SET observation = :observation WHERE id = :id');

@@ -62,7 +62,7 @@ try {
 
 //Listar Serviços Prontos
 try {
-    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.date, s.problem, c.name, c.cpf_cnpj, c.number FROM services s JOIN
+    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.observation, s.date, s.problem, c.name, c.cpf_cnpj, c.number FROM services s JOIN
     clients c ON s.id_client = c.id WHERE s.status = :status ORDER BY s.id DESC');
     $stmt->bindValue(':status', 3, PDO::PARAM_INT);
     $stmt->execute();
@@ -86,7 +86,7 @@ try {
 
 //Listar Serviços Finalizados
 try {
-    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.date, s.problem, c.name, c.cpf_cnpj, c.number FROM services s JOIN
+    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.observation, s.date, s.updated_at, s.problem, c.name, c.cpf_cnpj, c.number FROM services s JOIN
     clients c ON s.id_client = c.id WHERE s.status = :status ORDER BY s.id DESC');
     $stmt->bindValue(':status', 4, PDO::PARAM_INT);
     $stmt->execute();

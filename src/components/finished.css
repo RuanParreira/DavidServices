@@ -1,0 +1,49 @@
+@layer components {
+  .layer-page-finalizados {
+    @apply rounded-xl border border-gray-100 bg-white p-6 shadow-sm;
+  }
+
+  /* Buscar por serviços finalizados */
+  .titulo-busca-finalizados {
+    @apply mb-4 text-lg font-semibold text-gray-900;
+  }
+  .layer-search-finalizados {
+    @apply grid grid-cols-1 gap-4 md:grid-cols-3;
+  }
+  .titulo-search-finalizados {
+    @apply mb-2 block text-sm font-medium text-gray-700;
+  }
+  .input-search-finalizados {
+    @apply w-full rounded-lg border border-gray-300 py-2 pr-4 pl-10 focus:border-transparent focus:ring-2 focus:ring-blue-600;
+  }
+  .icons-search-finalizados {
+    @apply absolute top-1/2 left-3 -translate-y-1/2 transform text-gray-400;
+  }
+
+  /* Mensagem de não há serviços finalizados */
+  .titulo-naoEncontrado-finalizados {
+    @apply p-12 text-center;
+    h3 {
+      @apply mb-2 text-lg font-semibold text-gray-900;
+    }
+    p {
+      @apply text-gray-500;
+    }
+  }
+  /* tabela de Serviços Finalizados */
+  .layer-tabela-finalizados {
+    @apply rounded-xl border border-gray-100 bg-white shadow-sm;
+  }
+  .titulo-tabela-finalizados {
+    @apply border-b border-gray-100 p-6;
+    h2 {
+      @apply text-xl font-semibold text-gray-900;
+    }
+  }
+  .titulo-colunas {
+    @apply px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase;
+  }
+  .linhas-tabela {
+    @apply px-6 py-6 text-sm text-gray-900;
+  }
+}
