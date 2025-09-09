@@ -88,7 +88,7 @@ require __DIR__ . '/../../src/backend/notStart/listServices.php'
                                         <div class="flex items-start gap-2">
                                             <i class="bi bi-exclamation-circle
                                       text-blue-600 mt-0.5 flex-shrink-0 text-xs"></i>
-                                            <div>
+                                            <div class="overflow-hidden ">
                                                 <p class="text-sm font-medium text-gray-700">
                                                     Problema:
                                                 </p>
@@ -99,7 +99,7 @@ require __DIR__ . '/../../src/backend/notStart/listServices.php'
                                         </div>
                                     </div>
                                     <div class="flex gap-3">
-                                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 w-full">
                                             <i class="bi bi-eye"></i>
                                             Detalhes
                                         </button>
