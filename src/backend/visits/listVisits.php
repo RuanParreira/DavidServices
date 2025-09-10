@@ -11,10 +11,12 @@ try {
         ORDER BY s.time ASC');
         $stmt->execute([':search' => $search]);
     } else {
+        // Busca pela data atual
         $stmt = $pdo->prepare('SELECT s.id, s.status, s.date, s.time, s.address, c.name, c.number
         FROM visits s JOIN clients c ON s.id_client = c.id
-        ORDER BY s.date DESC, s.time DESC');
-        $stmt->execute();
+        WHERE s.date = :search
+        ORDER BY s.time ASC');
+        $stmt->execute([':search' => date('Y-m-d')]);
     }
     $list_Visits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {

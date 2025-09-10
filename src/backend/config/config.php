@@ -11,6 +11,7 @@ define("CONF_URL_BASE", "http://localhost/DavidServices");
 define("CONF_URL_ADMIN", CONF_URL_BASE . "/admin");
 define("CONF_URL_ERROR", CONF_URL_BASE . "/404");
 
-//Dates
+//Dates)
+date_default_timezone_set('America/Sao_Paulo');
 define("CONF_DATE_BR", "d/m/Y");
 define("CONF_DATE_APP", "Y-m-d H:i:s");
