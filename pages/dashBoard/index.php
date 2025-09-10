@@ -165,8 +165,8 @@ require __DIR__ . '/../../src/backend/functions/dashBoard.php';
                         <h2 class="text-2xl font-semibold text-gray-900">Ultimos Serviços</h2>
                         <p class="pequena-descricao">Os 5 serviços mais recentes cadastrados no sistema</p>
                     </div>
-                    <div class="px-6 py-2 overflow-y-auto h-[13rem]">
-                        <div class="space-y-4">
+                    <div class="px-6 py-2 h-[72%]">
+                        <div class="space-y-4 overflow-y-auto h-full">
                             <!-- Puxar do banco de dados -->
                             <?php if (empty($ultimos_servicos)): ?>
                                 <div class='text-center py-8 mt-15'>
