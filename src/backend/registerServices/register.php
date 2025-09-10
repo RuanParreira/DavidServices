@@ -3,12 +3,12 @@ require __DIR__ . '/../conn.php';
 require __DIR__ . '/../functions/geral.php';
 
 //Buscar Clients Registrados com Filtro
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user_id'] ?? null;
-    $id_client = $_GET['id_client'] ?? null;
-    $equipment = trim(strip_tags($_GET['equipment'] ?? ''));
-    $problem = trim(strip_tags($_GET['problem'] ?? ''));
-    $date = trim(strip_tags($_GET['date'] ?? ''));
+    $id_client = $_POST['id_client'] ?? null;
+    $equipment = trim(strip_tags($_POST['equipment'] ?? ''));
+    $problem = trim(strip_tags($_POST['problem'] ?? ''));
+    $date = trim(strip_tags($_POST['date'] ?? ''));
 
     if (empty($user_id) || empty($id_client) || empty($equipment) || empty($problem) || empty($date)) {
         $_SESSION['error_message'] = 'Por favor, preencha todos os campos.';

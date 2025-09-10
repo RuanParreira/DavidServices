@@ -8,7 +8,7 @@
     @apply mb-4 text-lg font-semibold text-gray-900;
   }
   .layer-search-finalizados {
-    @apply grid grid-cols-1 gap-4 md:grid-cols-3;
+    @apply flex space-x-4;
   }
   .titulo-search-finalizados {
     @apply mb-2 block text-sm font-medium text-gray-700;

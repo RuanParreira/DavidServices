@@ -12,7 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const res = await fetch(
-      `../../src/backend/registerServices/autoComplete.php?q=${encodeURIComponent(query)}`,
+      "../../src/backend/registerServices/autoComplete.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `q=${encodeURIComponent(query)}`,
+      },
     );
     const clients = await res.json();
 

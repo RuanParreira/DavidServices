@@ -32,14 +32,16 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
                     <h2 class="titulo-busca-finalizados">
                         Filtros de Busca
                     </h2>
-                    <div class="layer-search-finalizados ">
-                        <div>
+                    <!-- Campo de Busca dos Serviços -->
+                    <form method="get" autocomplete="off" class="layer-search-finalizados ">
+                        <div class="w-full">
                             <label for="search" class="titulo-search-finalizados">
                                 Buscar por nome, CPF ou equipamento
                             </label>
                             <div class="relative">
                                 <i class="bi bi-search icons-search-finalizados"></i>
-                                <input type="text" name="search" id="search" class="input-search-finalizados" placeholder="Digite para buscar...">
+                                <input type="text" name="search" id="search" class="input-search-finalizados" placeholder="Digite para buscar..."
+                                    value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
                             </div>
                         </div>
                         <div>
@@ -48,7 +50,8 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
                             </label>
                             <div class="relative">
                                 <i class="bi bi-calendar icons-search-finalizados"></i>
-                                <input type="date" name="dataChegada" id="dataChegada" class="input-search-finalizados">
+                                <input type="date" name="dataChegada" id="dataChegada" class="input-search-finalizados"
+                                    value="<?= isset($_GET['dataChegada']) ? htmlspecialchars($_GET['dataChegada']) : '' ?>">
                             </div>
                         </div>
                         <div>
@@ -57,10 +60,22 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
                             </label>
                             <div class="relative">
                                 <i class="bi bi-calendar icons-search-finalizados"></i>
-                                <input type="date" name="dataEntregue" id="dataEntregue" class="input-search-finalizados">
+                                <input type="date" name="dataEntregue" id="dataEntregue" class="input-search-finalizados"
+                                    value="<?= isset($_GET['dataEntregue']) ? htmlspecialchars($_GET['dataEntregue']) : '' ?>">
                             </div>
                         </div>
-                    </div>
+                        <div class="flex items-end space-x-2">
+                            <!-- Botao de Limpar a Busca -->
+                            <?php if (!empty($_GET['search']) || !empty($_GET['dataChegada']) || !empty($_GET['dataEntregue'])): ?>
+                                <button type="button" id="clearFinishedSearch" class="btn-limpar-busca h-10">
+                                    <i class="bi bi-trash text-xl"></i>
+                                </button>
+                            <?php endif; ?>
+                            <button type="submit" class="btn-buscar">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div class="layer-tabela-finalizados">
                     <div class="titulo-tabela-finalizados">
@@ -131,7 +146,7 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
             </div>
         </div>
     </main>
-
+    <script src="../../src/scripts/resultMessage.js"></script>
 </body>
 
 </html>

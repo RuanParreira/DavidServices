@@ -85,13 +85,45 @@ try {
 }
 
 //Listar Serviços Finalizados
+
+
+//Lista de Serviços Finalizados com Filtro
 try {
-    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.observation, s.date, s.updated_at, s.problem, c.name, c.cpf_cnpj, c.number FROM services s JOIN
-    clients c ON s.id_client = c.id WHERE s.status = :status ORDER BY s.id DESC');
-    $stmt->bindValue(':status', 4, PDO::PARAM_INT);
-    $stmt->execute();
+    $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+    $dataChegada = isset($_GET['dataChegada']) ? $_GET['dataChegada'] : '';
+    $dataEntregue = isset($_GET['dataEntregue']) ? $_GET['dataEntregue'] : '';
+
+    $sql = 'SELECT s.id, s.status, s.equipment, s.observation, s.date, s.updated_at, s.problem, c.name, c.cpf_cnpj, c.number 
+            FROM services s 
+            JOIN clients c ON s.id_client = c.id 
+            WHERE s.status = :status';
+    $params = [':status' => 4];
+
+    if ($search !== '') {
+        $sql .= ' AND (c.name LIKE :search OR c.cpf_cnpj LIKE :search OR s.equipment LIKE :search)';
+        $params[':search'] = "%$search%";
+    }
+
+    if ($dataChegada !== '') {
+        $sql .= ' AND s.date = :dataChegada';
+        $params[':dataChegada'] = $dataChegada;
+    }
+
+    if ($dataEntregue !== '') {
+        $sql .= ' AND s.updated_at = :dataEntregue';
+        $params[':dataEntregue'] = $dataEntregue;
+    }
+
+    $sql .= ' ORDER BY s.id DESC';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+
     $list_finalizados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    echo "Erro ao Buscar Serviços: " . $e->getMessage();
+    $_SESSION['error_message'] = "Erro ao Buscar Serviços: " . $e->getMessage();
+    header('Location: /davidServices/pages/registerClients');
+    exit;
 }
+
 //-----------------------------------------------------------------------------------------------------

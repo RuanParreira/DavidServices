@@ -1,5 +1,5 @@
 <?php
-$currentPage = basename($_SERVER['REQUEST_URI']);
+$currentPage = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 ?>
 <aside class="menu-lateral">
     <div class="p-4 border-b border-gray-300 flex items-center justify-between">

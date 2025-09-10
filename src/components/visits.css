@@ -1,0 +1,60 @@
+@layer components {
+  /* Formulario de visistas */
+  .layer-conteudo-visits {
+    @apply grid grid-cols-1 gap-6 lg:grid-cols-2;
+  }
+  .layer-form-visits {
+    @apply h-fit rounded-xl border border-gray-100 bg-white p-6 shadow-sm;
+  }
+  .titulo-form-visits {
+    @apply mb-6 text-xl font-semibold text-gray-900;
+  }
+  .cont-form-visits {
+    @apply grid grid-cols-2 gap-4;
+  }
+  .titulo-label-visits {
+    @apply mb-2 block text-sm font-medium text-gray-700;
+  }
+  .input-form-visits {
+    @apply h-10 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-600;
+  }
+  .textarea-form-visits {
+    @apply w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-600;
+  }
+  .btn-submit-visits {
+    @apply w-full cursor-pointer rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700;
+  }
+
+  /* Lista de visitas */
+  .layer-cont-search-visits {
+    @apply rounded-xl border border-gray-100 bg-white p-6 shadow-sm;
+  }
+  .input-search-visits {
+    @apply w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-600;
+  }
+  .layer-nao-encontrado-visits {
+    @apply py-10 text-center;
+    i {
+      @apply mx-auto text-5xl text-gray-400;
+    }
+    p {
+      @apply mt-3 text-gray-500;
+    }
+  }
+
+  .status-visit {
+    @apply rounded-full px-2 py-0.5 text-xs font-medium;
+  }
+  .layer-cont-list-visits {
+    @apply max-h-[calc(100vh-16rem)] space-y-3 overflow-y-auto;
+  }
+  .text-btn-search-visits {
+    @apply text-sm text-blue-600;
+  }
+  .btn-search-visits {
+    @apply flex h-5 w-5 cursor-pointer items-center justify-center rounded-full border-2 border-blue-600 transition-colors hover:bg-blue-600;
+  }
+  .efeito-btn-search-visits {
+    @apply h-1.5 w-1.5 rounded-full bg-blue-600 opacity-0 transition-all group-hover:opacity-100;
+  }
+}

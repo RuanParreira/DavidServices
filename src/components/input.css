@@ -6,6 +6,7 @@
 @import "./registerServices.css";
 @import "./inProgress.css";
 @import "./finished.css";
+@import "./visits.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 
 @layer base {

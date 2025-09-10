@@ -41,7 +41,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                 </p>
                             </div>
                         <?php else: ?>
-                            <form action="../../src/backend/registerServices/register.php" class="space-y-4" method="GET" autocomplete="off">
+                            <form action="../../src/backend/registerServices/register.php" class="space-y-4" method="POST" autocomplete="off">
                                 <div>
                                     <label for="search-client" class="subtitulo-default-services ">
                                         Cliente
