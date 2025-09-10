@@ -23,8 +23,11 @@
   /* Mensagem de não há serviços finalizados */
   .titulo-naoEncontrado-finalizados {
     @apply p-12 text-center;
+    i {
+      @apply text-6xl text-gray-400;
+    }
     h3 {
-      @apply mb-2 text-lg font-semibold text-gray-900;
+      @apply mt-4 mb-2 text-lg font-semibold text-gray-900;
     }
     p {
       @apply text-gray-500;
