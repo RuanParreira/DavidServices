@@ -58,7 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //Verificar Contato
-    if (!preg_match('/^\d{1,11}$/', $number)) {
+    if (strlen($number) !== 10 && strlen($number) !== 11) {
+        $_SESSION['error_message'] = "Número de contato inválido.";
+        header('Location: /davidServices/pages/registerClients');
+        exit;
+    } elseif (!preg_match('/^\d{1,11}$/', $number)) {
         $_SESSION['error_message'] = "Número de contato inválido.";
         header('Location: /davidServices/pages/registerClients');
         exit;
@@ -91,9 +95,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         $_SESSION['success_message'] = 'Cliente cadastrado com sucesso!';
         header('Location: /davidServices/pages/registerClients');
+        exit;
     } catch (PDOException $e) {
         error_log($e->getMessage());
         $_SESSION['error_message'] = 'Erro ao cadastrar cliente.';
         header('Location: /davidServices/pages/registerClients');
+        exit;
     }
 }

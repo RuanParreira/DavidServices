@@ -4,8 +4,8 @@ $currentPage = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 <aside class="menu-lateral">
     <div class="p-4 border-b border-gray-300 flex items-center justify-between">
         <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <i class="bi bi-person-circle text-3xl text-blue-600"></i>
+            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <img src="../../public/logo.jpg" alt="Logo da Empresa" class="object-cover rounded-full">
             </div>
             <h2 class="text-blue-600 text-2xl font-semibold">Davidcom</h2>
         </div>

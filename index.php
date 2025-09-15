@@ -12,6 +12,7 @@
 <body>
   <main class="main-form">
     <form action="<?php echo 'src/backend/auth/login.php'; ?>" class="form-style" method="POST">
+      <img src="./public/logo.jpg" alt="logo da empresa" class="w-18 h-18 bg-blue-600 rounded-full -mb-4" />
       <h1 class="text-blue-600 text-center p-6 text-4xl font-bold">DavidServices</h1>
       <label class="flex flex-col w-full">
         <span class="text-blue-600 font-semibold">

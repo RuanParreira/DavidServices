@@ -151,7 +151,7 @@ require __DIR__ . '/../../src/backend/visits/listVisits.php'
                                                 </div>
                                                 <?php if ($visit['status'] == 1): ?>
                                                     <form method="post" action="../../src/backend/visits/proceed.php" class="flex space-x-2">
-                                                        <input type="text" name="id" id="name" value="<?= htmlspecialchars($visit['id']); ?>" hidden>
+                                                        <input type="hidden" name="id" id="name" value="<?= htmlspecialchars($visit['id']); ?>">
                                                         <span class="text-btn-search-visits">Concluir</span>
                                                         <button type="submit" class="btn-search-visits group ">
                                                             <div class="efeito-btn-search-visits group-hover:bg-white">

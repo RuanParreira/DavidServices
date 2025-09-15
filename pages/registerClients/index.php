@@ -105,15 +105,42 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                     </div>
                                 <?php else: ?>
                                     <?php foreach ($resultClients as $client): ?>
-                                        <div class="cont-cards-client">
-                                            <h3 class="font-semibold text-gray-900 mb-1">
-                                                <?= htmlspecialchars($client['name']); ?>
-                                            </h3>
+                                        <div class="cont-cards-client group">
+                                            <div class="flex justify-between">
+                                                <h3 class="font-semibold text-gray-900 mb-1">
+                                                    <?= htmlspecialchars($client['name']); ?>
+                                                </h3>
+                                                <div class="flex space-x-2">
+                                                    <div>
+                                                        <!-- Adicione um id ao botão de editar e um atributo data-id para identificar o cliente -->
+                                                        <button
+                                                            type="button"
+                                                            class="cursor-pointer opacity-0 group-hover:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-client"
+                                                            data-id="<?= htmlspecialchars($client['id']); ?>"
+                                                            data-name="<?= htmlspecialchars($client['name']); ?>"
+                                                            data-number="<?= htmlspecialchars($client['number']); ?>">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </button>
+                                                    </div>
+                                                    <form action="../../src/backend/registerClients/delete.php" method="POST">
+                                                        <input type="hidden" name="client_id" value="<?= htmlspecialchars($client['id']); ?>">
+                                                        <button type="submit" class="cursor-pointer opacity-0 group-hover:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja deletar este cliente?');">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                             <p class="text-sm text-gray-600 mb-1">
-                                                CPF: <?= htmlspecialchars($client['cpf_cnpj']); ?>
+                                                <?php if (strlen($client['cpf_cnpj']) === 11): ?>
+                                                    <!-- Imprime CPF -->
+                                                    CPF: <?= htmlspecialchars(formatCpfCnpj($client['cpf_cnpj'])); ?>
+                                                <?php elseif (strlen($client['cpf_cnpj']) === 14): ?>
+                                                    <!-- Imprime CNPJ -->
+                                                    CNPJ: <?= htmlspecialchars(formatCpfCnpj($client['cpf_cnpj'])); ?>
+                                                <?php endif; ?>
                                             </p>
                                             <p class="text-sm text-gray-600">
-                                                Contato: <?= htmlspecialchars($client['number']); ?>
+                                                Contato: <?= htmlspecialchars(formatNumber($client['number'])); ?>
                                             </p>
                                         </div>
                                     <?php endforeach; ?>
@@ -124,8 +151,48 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                 </div>
             </div>
         </div>
+        <!-- Modal de Edição -->
+        <div id="editModal" class="hidden fixed inset-0 z-50 items-center justify-center">
+            <!-- Overlay escuro -->
+            <div id="editModalOverlay" class="absolute inset-0 bg-black opacity-80"></div>
+
+            <!-- Caixa do modal (centrada) -->
+            <div class="relative bg-white rounded-xl shadow-sm border border-gray-100 p-6 w-full max-w-lg mx-4">
+                <button type="button" id="closeEditModal" class="absolute cursor-pointer top-3 right-3 text-gray-500 hover:text-gray-700">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+
+                <div class="flex items-center gap-3 mb-6">
+                    <i class="bi bi-person-gear text-2xl text-blue-600"></i>
+                    <h2 class="text-xl font-semibold text-gray-900">
+                        Editar Cliente
+                    </h2>
+                </div>
+
+                <form action="../../src/backend/registerClients/update.php" method="post" class="space-y-4" autocomplete="off">
+                    <input type="hidden" name="client_id" id="editClientId" value="">
+                    <div>
+                        <label for="edit_name" class="block text-sm font-medium text-gray-700 mb-2">
+                            Nome Completo
+                        </label>
+                        <input id="edit_name" name="edit_name" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" value="">
+                    </div>
+                    <div>
+                        <label for="edit_number" class="block text-sm font-medium text-gray-700 mb-2">
+                            Contato
+                        </label>
+                        <input id="edit_number" name="edit_number" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" value="">
+                    </div>
+                    <button type="submit" class="w-full cursor-pointer bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        Salvar Alterações
+                    </button>
+                </form>
+            </div>
+        </div>
     </main>
+
     <script src="../../src/scripts/resultMessage.js"></script>
+    <script src="../../src/scripts/changeUsers.js"></script>
 </body>
 
 </html>
