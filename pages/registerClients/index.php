@@ -42,11 +42,11 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                     <label for="name" class="subTitulo-default-client">
                                         Nome Completo
                                     </label>
-                                    <input id="name" name="name" type="text" class="input-name-client" placeholder="Digite o nome completo">
+                                    <input id="name" name="name" type="text" class="input-name-client" placeholder="Digite o nome completo" maxlength="100">
                                 </div>
                                 <div>
                                     <label for="cpf_cnpj" class="subTitulo-default-client">
-                                        CPF
+                                        CPF/CNPJ
                                     </label>
                                     <div class="relative">
                                         <i class="bi bi-person-vcard icon-default-client"></i>
@@ -80,7 +80,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                 <div class="relative w-full">
                                     <i class="bi bi-search icon-search-client"></i>
                                     <input type="text" name="search" id="searchInput" class="input-search-client" placeholder="Buscar por nome ou CPF"
-                                        value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
+                                        value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>" maxlength="100">
                                 </div>
                                 <div class="flex space-x-2">
                                     <?php if (!empty($search)) : ?>
@@ -131,13 +131,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                                 </div>
                                             </div>
                                             <p class="text-sm text-gray-600 mb-1">
-                                                <?php if (strlen($client['cpf_cnpj']) === 11): ?>
-                                                    <!-- Imprime CPF -->
-                                                    CPF: <?= htmlspecialchars(formatCpfCnpj($client['cpf_cnpj'])); ?>
-                                                <?php elseif (strlen($client['cpf_cnpj']) === 14): ?>
-                                                    <!-- Imprime CNPJ -->
-                                                    CNPJ: <?= htmlspecialchars(formatCpfCnpj($client['cpf_cnpj'])); ?>
-                                                <?php endif; ?>
+                                                <?= htmlspecialchars(formatCpfCnpj($client['cpf_cnpj'])); ?>
                                             </p>
                                             <p class="text-sm text-gray-600">
                                                 Contato: <?= htmlspecialchars(formatNumber($client['number'])); ?>
@@ -175,7 +169,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                         <label for="edit_name" class="block text-sm font-medium text-gray-700 mb-2">
                             Nome Completo
                         </label>
-                        <input id="edit_name" name="edit_name" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" value="">
+                        <input id="edit_name" name="edit_name" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" value="" maxlength="100">
                     </div>
                     <div>
                         <label for="edit_number" class="block text-sm font-medium text-gray-700 mb-2">
@@ -193,6 +187,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
 
     <script src="../../src/scripts/resultMessage.js"></script>
     <script src="../../src/scripts/changeUsers.js"></script>
+    <script src="../../src/scripts/formatClient.js"></script>
 </body>
 
 </html>

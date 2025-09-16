@@ -41,7 +41,7 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
                             <div class="relative">
                                 <i class="bi bi-search icons-search-finalizados"></i>
                                 <input type="text" name="search" id="search" class="input-search-finalizados" placeholder="Digite para buscar..."
-                                    value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
+                                    value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>" maxlength="100">
                             </div>
                         </div>
                         <div>
@@ -104,18 +104,19 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
                                         <th class="titulo-colunas">Observação</th>
                                         <th class="titulo-colunas">Data Chegada</th>
                                         <th class="titulo-colunas">Data Entregue</th>
+                                        <th class="titulo-colunas text-center">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
                                     <?php foreach ($list_finalizados as $services): ?>
                                         <tr class="hover:bg-gray-50">
-                                            <td class="px-6 py-4">
+                                            <td class="px-6">
                                                 <div>
                                                     <p class="text-sm font-medium text-gray-900">
                                                         <?= htmlspecialchars($services['name']) ?>
                                                     </p>
                                                     <p class="text-sm text-gray-500">
-                                                        <?= htmlspecialchars($services['cpf_cnpj']) ?>
+                                                        <?= htmlspecialchars(formatCpfCnpj($services['cpf_cnpj'], false)) ?>
                                                     </p>
                                                 </div>
                                             </td>
@@ -135,6 +136,14 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
                                             </td>
                                             <td class="linhas-tabela">
                                                 <?= htmlspecialchars(date(CONF_DATE_BR, strtotime($services['updated_at']))) ?>
+                                            </td>
+                                            <td class="linhas-tabela text-center">
+                                                <form action="../../src/backend/finished/delete.php" method="POST">
+                                                    <input type="hidden" name="service_id" value="<?= htmlspecialchars($services['id']); ?>">
+                                                    <button type="submit" class="cursor-pointer text-xl transition-all bg-red-100 py-1 px-2 rounded-md hover:bg-red-200 text-red-600 hover:text-red-700" onclick="return confirm('Tem certeza que deseja deletar este serviço?');">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const pCpf = document.createElement("p");
       pCpf.className = "text-sm text-gray-600";
-      pCpf.textContent = `CPF: ${client.cpf_cnpj}`;
+      pCpf.textContent = `${client.cpf_cnpj}`;
 
       const pNumber = document.createElement("p");
       pNumber.className = "text-sm text-gray-500";
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const pCpf = document.createElement("p");
     pCpf.className = "text-sm text-gray-600";
-    pCpf.textContent = `CPF: ${client.cpf_cnpj} - ${client.number}`;
+    pCpf.textContent = `${client.cpf_cnpj} - ${client.number}`;
 
     infoDiv.appendChild(pName);
     infoDiv.appendChild(pCpf);

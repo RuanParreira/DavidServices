@@ -17,7 +17,11 @@ document.querySelectorAll(".btn-edit-client").forEach((btn) => {
     const inputId = modal.querySelector("#editClientId");
 
     if (inputName) inputName.value = clientName || "";
-    if (inputNumber) inputNumber.value = clientNumber || "";
+    if (inputNumber) {
+      inputNumber.value = clientNumber || "";
+      // Dispara o evento de input para aplicar a máscara
+      inputNumber.dispatchEvent(new Event("input"));
+    }
     if (inputId) inputId.value = clientId || "";
 
     // Focar no campo nome

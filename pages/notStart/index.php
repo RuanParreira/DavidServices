@@ -58,25 +58,24 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
                                 <div class="space-y-4 ">
                                     <div>
                                         <div class="iten-default-card">
-                                            <i class="bi bi-person-vcard"></i>
+                                            <i class="bi bi-laptop"></i>
                                             <span>
-                                                CPF: <?= htmlspecialchars($services['cpf_cnpj']) ?>
+                                                <?= htmlspecialchars($services['equipment']) ?>
                                             </span>
                                         </div>
                                     </div>
                                     <div>
                                         <div class="iten-default-card">
-                                            <i class="bi bi-laptop"></i>
+                                            <i class="bi bi-person-vcard"></i>
                                             <span>
-                                                <?= htmlspecialchars($services['equipment']) ?>
+                                                <?= htmlspecialchars(formatCpfCnpj($services['cpf_cnpj'])); ?>
                                             </span>
-
                                         </div>
                                     </div>
                                     <div class="iten-default-card">
                                         <i class="bi bi-telephone"></i>
                                         <span>
-                                            Contato: <?= htmlspecialchars($services['number']) ?>
+                                            Contato: <?= htmlspecialchars(formatNumber($services['number'])) ?>
                                         </span>
                                     </div>
                                     <div>

@@ -53,26 +53,25 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
                                 </div>
                                 <div class="space-y-4 ">
                                     <div>
-                                        <div class="iten-default-card ">
-                                            <i class="bi bi-person-vcard"></i>
-                                            <span>
-                                                CPF: <?= htmlspecialchars($services['cpf_cnpj']) ?>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div>
                                         <div class="iten-default-card">
                                             <i class="bi bi-laptop"></i>
                                             <span>
                                                 <?= htmlspecialchars($services['equipment']) ?>
                                             </span>
-
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="iten-default-card ">
+                                            <i class="bi bi-person-vcard"></i>
+                                            <span>
+                                                <?= htmlspecialchars(formatCpfCnpj($services['cpf_cnpj'])); ?>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="iten-default-card">
                                         <i class="bi bi-telephone"></i>
                                         <span>
-                                            Contato: <?= htmlspecialchars($services['number']) ?>
+                                            Contato: <?= htmlspecialchars(formatNumber($services['number'])) ?>
                                         </span>
                                     </div>
                                     <div>

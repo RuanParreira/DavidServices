@@ -50,7 +50,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                     <div class="relative">
                                         <div class="relative">
                                             <i class="bi bi-search icon-search-services"></i>
-                                            <input type="text" name="name" id="search-client" class="input-client-services" placeholder="Pesquisar cliente pelo nome, CPF ou número">
+                                            <input type="text" name="name" id="search-client" class="input-client-services" placeholder="Pesquisar cliente pelo nome, CPF ou número" maxlength="100">
                                         </div>
                                         <div id="suggestion-container"
                                             class="hidden suggestion-clients-services">
@@ -63,14 +63,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                     <label for="equipment" class="subtitulo-default-services ">
                                         Equipamento
                                     </label>
-                                    <input type="text" id="equipment" name="equipment" class="input-equipamento-services" placeholder="Ex: Notebook Dell, Smartphone Samsung..." autocomplete="off">
-                                </div>
-                                <!-- Problema Detectado -->
-                                <div>
-                                    <label for="problem" class="subtitulo-default-services ">
-                                        Problema Detectado
-                                    </label>
-                                    <textarea rows="3" name="problem" id="problem" class="input-problem-services" placeholder="Descreva o problema reportado pelo cliente..." /></textarea>
+                                    <input type="text" id="equipment" name="equipment" class="input-equipamento-services" placeholder="Ex: Notebook Dell, Smartphone Samsung..." autocomplete="off" maxlength="100">
                                 </div>
                                 <!-- Data do Serviço -->
                                 <div>
@@ -78,6 +71,13 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                         Data
                                     </label>
                                     <input type="date" name="date" class="date-services" value="<?php echo htmlspecialchars(date('Y-m-d')); ?>">
+                                </div>
+                                <!-- Problema Detectado -->
+                                <div>
+                                    <label for="problem" class="subtitulo-default-services ">
+                                        Problema Detectado
+                                    </label>
+                                    <textarea rows="3" name="problem" id="problem" class="input-problem-services" placeholder="Descreva o problema reportado pelo cliente..." maxlength="255"></textarea>
                                 </div>
                                 <button type="submit" class="btn-enviar-services">
                                     Cadastrar Serviço
@@ -89,7 +89,7 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
             </div>
         </div>
     </main>
-    <script src="../../src/scripts/registerServices.js"></script>
+    <script src="../../src/scripts/autoComplete.js"></script>
     <script src="../../src/scripts/resultMessage.js"></script>
 </body>
 

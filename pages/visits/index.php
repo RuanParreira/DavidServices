@@ -79,7 +79,7 @@ require __DIR__ . '/../../src/backend/visits/listVisits.php'
                                     <div class="relative">
                                         <i class="bi bi-search icon-search-services"></i>
                                         <input type="text" name="name" id="search-client" class="input-client-services"
-                                            placeholder="Pesquisar cliente pelo nome, CPF ou número">
+                                            placeholder="Pesquisar cliente pelo nome, CPF ou número" maxlength="100">
                                     </div>
                                     <div id="suggestion-container"
                                         class="hidden suggestion-clients-services">
@@ -91,7 +91,7 @@ require __DIR__ . '/../../src/backend/visits/listVisits.php'
                                     Endereço
                                 </label>
                                 <textarea rows="3" name="address" id="address" class="textarea-form-visits"
-                                    placeholder="Digite o endereço do cliente"></textarea>
+                                    placeholder="Digite o endereço do cliente" maxlength="255"></textarea>
                             </div>
                             <button type="submit" class="btn-submit-visits ">
                                 Agendar Visita
@@ -164,7 +164,7 @@ require __DIR__ . '/../../src/backend/visits/listVisits.php'
                                                 <div class="flex items-center gap-2">
                                                     <i class="bi bi-person text-blue-600"></i>
                                                     <p class="font-medium text-gray-900 text-sm">
-                                                        <?= htmlspecialchars($visit['name']); ?> - <?= htmlspecialchars($visit['number']); ?>
+                                                        <?= htmlspecialchars($visit['name']); ?> - <?= htmlspecialchars(formatNumber($visit['number'])); ?>
                                                     </p>
                                                 </div>
                                                 <div class="flex items-center gap-2 text-sm text-gray-600">
@@ -182,7 +182,7 @@ require __DIR__ . '/../../src/backend/visits/listVisits.php'
             </div>
         </div>
     </main>
-    <script src="../../src/scripts/registerServices.js"></script>
+    <script src="../../src/scripts/autoComplete.js"></script>
     <script src="../../src/scripts/resultMessage.js"></script>
     <script src="../../src/scripts/checkVisits.js"></script>
 </body>

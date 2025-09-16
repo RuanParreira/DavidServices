@@ -5,12 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="src/components/output.css" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="./public/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <title>DavidServices</title>
 </head>
 
 <body>
-  <main class="main-form">
+  <main class="main-form bg-blue-200">
     <form action="<?php echo 'src/backend/auth/login.php'; ?>" class="form-style" method="POST">
       <img src="./public/logo.jpg" alt="logo da empresa" class="w-18 h-18 bg-blue-600 rounded-full -mb-4" />
       <h1 class="text-blue-600 text-center p-6 text-4xl font-bold">DavidServices</h1>
