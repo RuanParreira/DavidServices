@@ -13,8 +13,18 @@ try {
     }
     $resultClients = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    $_SESSION['error_message'] = "Erro ao Buscar Client: ";
+    $_SESSION['error_message'] = "Erro ao Buscar Cliente: ";
     header('Location: /davidServices/pages/registerClients');
     exit;
 }
-//-----------------------------------------------------------------------------------------------------
+
+// Pegar o Primeiro Nome do Técnico
+function getFirstName($fullName)
+{
+    if (empty($fullName)) {
+        return '';
+    }
+
+    $names = explode(' ', trim($fullName));
+    return $names[0];
+}

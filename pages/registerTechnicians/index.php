@@ -1,83 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <?php
 require __DIR__ . '/../../src/backend/functions/geral.php';
-require __DIR__ . '/../../src/backend/registerClients/list.php';
+require __DIR__ . '/../../src/backend/registerTechnicians/list.php';
 ?>
 
 <head>
     <?php require __DIR__ . '/../../src/includes/head.php'; ?>
-    <title>DashBoard</title>
+    <title>Registrar Técnicos</title>
 </head>
 
 <body>
     <main class="main-pages">
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
-        <!-- Mensagem de Sucesso ou Erro-->
+        <!-- Mensagem de Sucesso -->
         <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
 
-        <!-- Conteudo Principal -->
+        <!-- Conteudo Da Pagina -->
         <div class="p-6 h-full">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
                 <div class="layer-titulo">
-                    <i class="bi bi-person-plus text-3xl"></i>
+                    <i class="bi bi-people text-3xl"></i>
                     <h2>
-                        Registrar Clientes
+                        Registrar Técnicos
                     </h2>
                 </div>
-                <div class="layer-form-register">
-                    <!-- Formulario de Cadastros -->
-                    <div class="form-register">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                         <div class="flex items-center gap-3 mb-6">
-                            <i class="bi bi-person-plus text-2xl text-blue-600"></i>
-                            <h2 class="text-xl font-semibold text-gray-900">
-                                Novo Cliente
-                            </h2>
+                            <i class="bi bi-people text-blue-600 text-2xl"></i>
+                            <h2 class="text-xl font-semibold text-gray-900">Novo Técnico</h2>
                         </div>
-                        <form action="../../src/backend/registerClients/register.php" method="post" class="space-y-4"
-                            autocomplete="off">
+                        <form method="post" action="../../src/backend/registerTechnicians/register.php" class="space-y-4" autocomplete="off">
                             <div>
-                                <label for="name" class="subTitulo-default-client">
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                                     Nome Completo
                                 </label>
-                                <input id="name" name="name" type="text" class="input-name-client" placeholder="Digite o nome completo" maxlength="100">
+                                <input type="text" name="name" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" placeholder="Digite o nome completo" maxlength="100">
                             </div>
                             <div>
-                                <label for="cpf_cnpj" class="subTitulo-default-client">
-                                    CPF/CNPJ
+                                <label for="cpf" class="block text-sm font-medium text-gray-700 mb-2">
+                                    CPF
                                 </label>
                                 <div class="relative">
-                                    <i class="bi bi-person-vcard icon-default-client"></i>
-                                    <input id="cpf_cnpj" name="cpf_cnpj" type="text" class="input-default-client" placeholder="Digite o CPF/CNPJ">
+                                    <i class="bi bi-person-vcard absolute left-3 top-1/2 transform -translate-y-1/2  text-gray-400 text-lg"></i>
+                                    <input type="text" name="cpf" id="cpf" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" placeholder="Digite o CPF">
                                 </div>
                             </div>
                             <div>
-                                <label for="number" class="subTitulo-default-client">
+                                <label for="number" class="block text-sm font-medium text-gray-700 mb-2">
                                     Contato
                                 </label>
                                 <div class="relative">
-                                    <i class="bi bi-telephone icon-default-client"></i>
-                                    <input id="number" name="number" type="text" class="input-default-client" placeholder="Telefone, WhatsApp">
+                                    <i class="bi bi-telephone absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"></i>
+                                    <input type="text" name="number" id="number" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" placeholder="Telefone, WhatsApp">
                                 </div>
                             </div>
-                            <button type="submit" class="btn-enviar-client">
-                                Cadastrar
+                            <button type="submit" class="mt-1 mb-1 w-full bg-blue-600 text-white px-4 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer">
+                                Cadastrar Técnico
                             </button>
                         </form>
                     </div>
-                    <!-- Lista de Clientes Cadastrados -->
-                    <div class="layer-lista-clients">
-                        <div class="titulo-cards-client">
-                            <i class="bi bi-person"></i>
-                            <h2>
-                                Clientes Cadastrados
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                        <div class="flex items-center mb-6">
+                            <i class="bi bi-person text-blue-600 text-2xl"></i>
+                            <h2 class="text-xl font-semibold text-gray-900">
+                                Técnicos Cadastrados
                             </h2>
                         </div>
                         <!-- Campo de Busca dos Clientes -->
                         <form method="get" class="mb-6 flex items-center space-x-4" autocomplete="off">
                             <div class="relative w-full">
-                                <i class="bi bi-search icon-search-client"></i>
+                                <i class="bi bi-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"></i>
                                 <input type="text" name="search" id="searchInput" class="input-search-client" placeholder="Buscar por nome ou CPF"
                                     value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>" maxlength="100">
                             </div>
@@ -95,19 +91,18 @@ require __DIR__ . '/../../src/backend/registerClients/list.php';
                                 </button>
                             </div>
                         </form>
-                        <div class="layer-cards-client">
-                            <!-- Lista de Clientes Cadastrados  -->
-                            <?php if (empty($resultClients)): ?>
-                                <div class="text-center py-8 flex flex-col">
-                                    <i class="bi bi-person text-gray-500 text-6xl"></i>
-                                    <p class="text-gray-500">Nenhum Cliente Cadastrado</p>
+                        <div class="space-y-3 max-h-96 overflow-y-auto">
+                            <?php if (empty($resultTechnicians)): ?>
+                                <div class="text-center py-8">
+                                    <i class="bi bi-people text-gray-400 mx-auto text-6xl"></i>
+                                    <p class="text-gray-500 mt-3">Nenhum técnico cadastrado ainda</p>
                                 </div>
                             <?php else: ?>
-                                <?php foreach ($resultClients as $client): ?>
+                                <?php foreach ($resultTechnicians as $technical): ?>
                                     <div class="cont-cards-client group">
                                         <div class="flex justify-between">
                                             <h3 class="font-semibold text-gray-900 mb-1">
-                                                <?= htmlspecialchars($client['name']); ?>
+                                                <?= htmlspecialchars($technical['name']); ?>
                                             </h3>
                                             <div class="flex space-x-2">
                                                 <div>
@@ -115,14 +110,14 @@ require __DIR__ . '/../../src/backend/registerClients/list.php';
                                                     <button
                                                         type="button"
                                                         class="cursor-pointer opacity-0 group-hover:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-client"
-                                                        data-id="<?= htmlspecialchars($client['id']); ?>"
-                                                        data-name="<?= htmlspecialchars($client['name']); ?>"
-                                                        data-number="<?= htmlspecialchars($client['number']); ?>">
+                                                        data-id="<?= htmlspecialchars($technical['id']); ?>"
+                                                        data-name="<?= htmlspecialchars($technical['name']); ?>"
+                                                        data-number="<?= htmlspecialchars($technical['number']); ?>">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </button>
                                                 </div>
-                                                <form action="../../src/backend/registerClients/delete.php" method="POST">
-                                                    <input type="hidden" name="client_id" value="<?= htmlspecialchars($client['id']); ?>">
+                                                <form action="../../src/backend/registerTechnicians/delete.php" method="POST">
+                                                    <input type="hidden" name="technical_id" value="<?= htmlspecialchars($technical['id']); ?>">
                                                     <button type="submit" class="cursor-pointer opacity-0 group-hover:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja deletar este cliente?');">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
@@ -130,10 +125,10 @@ require __DIR__ . '/../../src/backend/registerClients/list.php';
                                             </div>
                                         </div>
                                         <p class="text-sm text-gray-600 mb-1">
-                                            <?= htmlspecialchars(formatCpfCnpj($client['cpf_cnpj'])); ?>
+                                            <?= htmlspecialchars(formatCpfCnpj($technical['cpf'])); ?>
                                         </p>
                                         <p class="text-sm text-gray-600">
-                                            Contato: <?= htmlspecialchars(formatNumber($client['number'])); ?>
+                                            Contato: <?= htmlspecialchars(formatNumber($technical['number'])); ?>
                                         </p>
                                     </div>
                                 <?php endforeach; ?>
@@ -157,12 +152,12 @@ require __DIR__ . '/../../src/backend/registerClients/list.php';
                 <div class="flex items-center gap-3 mb-6">
                     <i class="bi bi-person-gear text-2xl text-blue-600"></i>
                     <h2 class="text-xl font-semibold text-gray-900">
-                        Editar Cliente
+                        Editar Técnico
                     </h2>
                 </div>
 
-                <form action="../../src/backend/registerClients/update.php" method="post" class="space-y-4" autocomplete="off">
-                    <input type="hidden" name="client_id" id="editClientId" value="">
+                <form action="../../src/backend/registerTechnicians/update.php" method="post" class="space-y-4" autocomplete="off">
+                    <input type="hidden" name="technical_id" id="editTechnicalId" value="">
                     <div>
                         <label for="edit_name" class="block text-sm font-medium text-gray-700 mb-2">
                             Nome Completo
@@ -182,10 +177,9 @@ require __DIR__ . '/../../src/backend/registerClients/list.php';
             </div>
         </div>
     </main>
-
     <script src="../../src/scripts/resultMessage.js"></script>
-    <script src="../../src/scripts/changeUsers.js"></script>
-    <script src="../../src/scripts/formatClient.js"></script>
+    <script src="../../src/scripts/changeTechnicians.js"></script>
+    <script src="../../src/scripts/formatTechnicians.js"></script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <?php
 require __DIR__ . '/../../src/backend/functions/geral.php';
-require __DIR__ . '/../../src/backend/registerClients/listClients.php';
+require __DIR__ . '/../../src/backend/registerServices/listAll.php';
 ?>
 
 <head>
@@ -33,11 +33,11 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                             Novo Serviço
                         </h2>
                         <!-- Se não houver clientes cadastrados, não será possível cadastrar um serviço. -->
-                        <?php if (empty($resultClients)): ?>
+                        <?php if (empty($resultClients) && empty($resultTechnicians)): ?>
                             <div class="layer-nCadastro">
                                 <i class="bi bi-exclamation-triangle"></i>
                                 <p>
-                                    É necessário cadastrar pelo menos um cliente antes de criar um serviço.
+                                    É necessário cadastrar pelo menos um cliente e um técnico antes de criar um serviço.
                                 </p>
                             </div>
                         <?php else: ?>
@@ -66,11 +66,29 @@ require __DIR__ . '/../../src/backend/registerClients/listClients.php';
                                     <input type="text" id="equipment" name="equipment" class="input-equipamento-services" placeholder="Ex: Notebook Dell, Smartphone Samsung..." autocomplete="off" maxlength="100">
                                 </div>
                                 <!-- Data do Serviço -->
-                                <div>
-                                    <label for="" class="subtitulo-default-services ">
-                                        Data
-                                    </label>
-                                    <input type="date" name="date" class="date-services" value="<?php echo htmlspecialchars(date('Y-m-d')); ?>">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="technical" class="subtitulo-default-services">
+                                            Técnico Responsável
+                                        </label>
+                                        <div class="relative">
+                                            <i class="bi bi-people absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"></i>
+                                            <select name="id_technical" id="technical" class="w-full pl-8 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                                                <option value="">Selecione um Técnico</option>
+                                                <?php foreach ($resultTechnicians as $technical): ?>
+                                                    <option value="<?= htmlspecialchars($technical['id']) ?>">
+                                                        <?= htmlspecialchars(getFirstTwoNames($technical['name'])) ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="date" class="subtitulo-default-services ">
+                                            Data
+                                        </label>
+                                        <input type="date" id="date" name="date" class="date-services" value="<?php echo htmlspecialchars(date('Y-m-d')); ?>">
+                                    </div>
                                 </div>
                                 <!-- Problema Detectado -->
                                 <div>

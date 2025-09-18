@@ -43,6 +43,10 @@ $currentPage = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
             <i class="bi bi-calendar icons-menu"></i>
             <span>Visitas Técnicas</span>
         </a>
+        <a href="../registerTechnicians" class="<?= ($currentPage == 'registerTechnicians') ? 'itens-menu-active' : 'itens-menu' ?>">
+            <i class="bi bi-people icons-menu"></i>
+            <span>Registar Técnicos</span>
+        </a>
     </nav>
     <div class="flex flex-col gap-2 p-4 border-t border-gray-300 mt-auto">
         <a href="../../src/backend/auth/logout.php" class="btn-sair">

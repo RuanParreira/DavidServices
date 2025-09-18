@@ -6,11 +6,12 @@ require __DIR__ . '/../functions/geral.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user_id'] ?? null;
     $id_client = $_POST['id_client'] ?? null;
+    $id_technical = $_POST['id_technical'] ?? null;
     $date = trim(strip_tags($_POST['date'] ?? ''));
     $time = trim(strip_tags($_POST['time'] ?? ''));
     $address = trim(strip_tags($_POST['address'] ?? ''));
 
-    if (empty($user_id) || empty($id_client) || empty($date) || empty($time) || empty($address)) {
+    if (empty($user_id) || empty($id_client) || empty($id_technical) || empty($date) || empty($time) || empty($address)) {
         $_SESSION['error_message'] = 'Por favor, preencha todos os campos.';
         header('Location: ../../../pages/visits');
         exit;
@@ -46,9 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        $stmt = $pdo->prepare('INSERT INTO visits (id_client, id_user, date, time, address) VALUES (:id_client, :id_user, :d, :t, :a)');
+        $stmt = $pdo->prepare('INSERT INTO visits (id_client, id_user, id_technical, date, time, address) VALUES (:id_client, :id_user, :id_technical, :d, :t, :a)');
         $stmt->bindValue(':id_client', $id_client, PDO::PARAM_INT);
         $stmt->bindValue(':id_user', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':id_technical', $id_technical, PDO::PARAM_INT);
         $stmt->bindValue(':d', $date, PDO::PARAM_STR);
         $stmt->bindValue(':t', $time, PDO::PARAM_STR);
         $stmt->bindValue(':a', $address, PDO::PARAM_STR);

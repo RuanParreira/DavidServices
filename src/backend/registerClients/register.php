@@ -57,6 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    // Chama a função para validar CPF/CNPJ
+    if (!(validarCPF($cpf_cnpj) || validarCNPJ($cpf_cnpj))) {
+        $_SESSION['error_message'] = "CPF/CNPJ inválido.";
+        header('Location: /davidServices/pages/registerClients');
+        exit;
+    }
+
     //Verificar Contato
     if (strlen($number) !== 10 && strlen($number) !== 11) {
         $_SESSION['error_message'] = "Número de contato inválido.";
@@ -64,14 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } elseif (!preg_match('/^\d{1,11}$/', $number)) {
         $_SESSION['error_message'] = "Número de contato inválido.";
-        header('Location: /davidServices/pages/registerClients');
-        exit;
-    }
-
-
-    // Chama a função para validar CPF/CNPJ
-    if (!(validarCPF($cpf_cnpj) || validarCNPJ($cpf_cnpj))) {
-        $_SESSION['error_message'] = "CPF/CNPJ inválido.";
         header('Location: /davidServices/pages/registerClients');
         exit;
     }
