@@ -231,7 +231,7 @@ require __DIR__ . '/../../src/backend/visits/listAll.php';
             <div id="editModalOverlay" class="absolute inset-0 bg-black opacity-80"></div>
 
             <!-- Caixa do modal (centrada) -->
-            <div class="relative bg-white rounded-xl shadow-sm border border-gray-100 p-6 w-full max-w-lg mx-4">
+            <div class="modal-content relative bg-white rounded-xl shadow-sm border border-gray-100 p-6 w-full max-w-lg mx-4">
                 <button type="button" id="closeEditModal" class="absolute cursor-pointer top-3 right-3 text-gray-500 hover:text-gray-700">
                     <i class="bi bi-x-lg"></i>
                 </button>

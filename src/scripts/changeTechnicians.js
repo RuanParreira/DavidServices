@@ -8,8 +8,28 @@ document.querySelectorAll(".btn-edit-client").forEach((btn) => {
 
     // Seleciona o modal (wrapper com overlay)
     const modal = document.getElementById("editModal");
+    const modalContent = modal.querySelector(".modal-content");
+
+    // Mostra o modal e inicia a animação de entrada
     modal.classList.remove("hidden");
     modal.classList.add("flex");
+
+    // Força um reflow para garantir que as classes sejam aplicadas
+    modal.offsetHeight;
+
+    // Adiciona classes de animação
+    modal.classList.add("modal-entering");
+    if (modalContent) {
+      modalContent.classList.add("modal-content-entering");
+    }
+
+    // Remove as classes de animação após a transição
+    setTimeout(() => {
+      modal.classList.remove("modal-entering");
+      if (modalContent) {
+        modalContent.classList.remove("modal-content-entering");
+      }
+    }, 300);
 
     // Preenche os campos do modal pelos names/ids
     const inputName = modal.querySelector("#edit_name");
@@ -35,7 +55,24 @@ if (modalWrapper) {
   const overlay = modalWrapper.querySelector("#editModalOverlay");
   const closeBtn = modalWrapper.querySelector("#closeEditModal");
 
-  const closeModal = () => modalWrapper.classList.add("hidden");
+  const closeModal = () => {
+    const modalContent = modalWrapper.querySelector(".modal-content");
+
+    // Adiciona classes de animação de saída
+    modalWrapper.classList.add("modal-leaving");
+    if (modalContent) {
+      modalContent.classList.add("modal-content-leaving");
+    }
+
+    // Esconde o modal após a animação
+    setTimeout(() => {
+      modalWrapper.classList.add("hidden");
+      modalWrapper.classList.remove("flex", "modal-leaving");
+      if (modalContent) {
+        modalContent.classList.remove("modal-content-leaving");
+      }
+    }, 300);
+  };
 
   if (overlay) overlay.addEventListener("click", closeModal);
   if (closeBtn) closeBtn.addEventListener("click", closeModal);

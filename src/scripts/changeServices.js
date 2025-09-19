@@ -1,10 +1,13 @@
-// Seleciona todos os botões de editar
+// Seleciona todos os botões de editar serviços
 document.querySelectorAll(".btn-edit-client").forEach((btn) => {
   btn.addEventListener("click", function () {
-    // Pega os dados do cliente
-    const clientId = this.getAttribute("data-id");
-    const clientName = this.getAttribute("data-name");
-    const clientNumber = this.getAttribute("data-number");
+    // Pega os dados do serviço
+    const serviceId = this.getAttribute("data-id");
+    const serviceStatus = this.getAttribute("data-status");
+    const serviceDate = this.getAttribute("data-date");
+    const serviceTechnical = this.getAttribute("data-technical");
+    const serviceEquipment = this.getAttribute("data-equipment");
+    const serviceProblem = this.getAttribute("data-problem");
 
     // Seleciona o modal (wrapper com overlay)
     const modal = document.getElementById("editModal");
@@ -32,20 +35,22 @@ document.querySelectorAll(".btn-edit-client").forEach((btn) => {
     }, 300);
 
     // Preenche os campos do modal pelos names/ids
-    const inputName = modal.querySelector("#edit_name");
-    const inputNumber = modal.querySelector("#edit_number");
     const inputId = modal.querySelector("#editClientId");
+    const inputEquipment = modal.querySelector("#edit_equipment");
+    const inputDate = modal.querySelector("#edit_date");
+    const selectTechnical = modal.querySelector("#edit_technical");
+    const selectStatus = modal.querySelector("#edit_status");
+    const textareaProblem = modal.querySelector("#edit_problem");
 
-    if (inputName) inputName.value = clientName || "";
-    if (inputNumber) {
-      inputNumber.value = clientNumber || "";
-      // Dispara o evento de input para aplicar a máscara
-      inputNumber.dispatchEvent(new Event("input"));
-    }
-    if (inputId) inputId.value = clientId || "";
+    if (inputId) inputId.value = serviceId || "";
+    if (inputEquipment) inputEquipment.value = serviceEquipment || "";
+    if (inputDate) inputDate.value = serviceDate || "";
+    if (selectTechnical) selectTechnical.value = serviceTechnical || "";
+    if (selectStatus) selectStatus.value = serviceStatus || "";
+    if (textareaProblem) textareaProblem.value = serviceProblem || "";
 
-    // Focar no campo nome
-    if (inputName) inputName.focus();
+    // Focar no campo equipamento
+    if (inputEquipment) inputEquipment.focus();
   });
 });
 
@@ -71,7 +76,7 @@ if (modalWrapper) {
       if (modalContent) {
         modalContent.classList.remove("modal-content-leaving");
       }
-    }, 300);
+    }, 200);
   };
 
   if (overlay) overlay.addEventListener("click", closeModal);
@@ -83,4 +88,22 @@ if (modalWrapper) {
       closeModal();
     }
   });
+
+  // Interceptar submit do formulário para confirmar status finalizado
+  const editForm = modalWrapper.querySelector("form");
+  if (editForm) {
+    editForm.addEventListener("submit", function (e) {
+      const statusSelect = this.querySelector("#edit_status");
+      if (statusSelect && statusSelect.value === "4") {
+        if (
+          !confirm(
+            "Tem certeza que deseja finalizar este serviço? Esta ação não pode ser desfeita.",
+          )
+        ) {
+          e.preventDefault();
+          return false;
+        }
+      }
+    });
+  }
 }

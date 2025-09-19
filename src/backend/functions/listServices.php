@@ -14,8 +14,11 @@ try {
 
 //Listar Serviços que Não Começou
 try {
-    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.date, s.problem, c.name, c.cpf_cnpj, c.number FROM services s JOIN
-    clients c ON s.id_client = c.id WHERE s.status = :status ORDER BY s.id DESC');
+    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.date, s.problem, c.name, c.cpf_cnpj, c.number, t.id AS technician_id, t.name AS technician_name 
+    FROM services s 
+    JOIN clients c ON s.id_client = c.id 
+    JOIN technicians t ON s.id_technical = t.id
+    WHERE s.status = :status ORDER BY s.id DESC');
     $stmt->bindValue(':status', 1, PDO::PARAM_INT);
     $stmt->execute();
     $list_nComecou = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -38,8 +41,11 @@ try {
 
 //Listar Serviços Iniciados
 try {
-    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.observation, s.date, s.problem, c.name, c.cpf_cnpj, c.number FROM services s JOIN
-    clients c ON s.id_client = c.id WHERE s.status = :status ORDER BY s.id DESC');
+    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.observation, s.date, s.problem, c.name, c.cpf_cnpj, c.number, t.id AS technician_id, t.name AS technician_name 
+    FROM services s 
+    JOIN clients c ON s.id_client = c.id 
+    JOIN technicians t ON s.id_technical = t.id 
+    WHERE s.status = :status ORDER BY s.id DESC');
     $stmt->bindValue(':status', 2, PDO::PARAM_INT);
     $stmt->execute();
     $list_iniciados = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -62,8 +68,11 @@ try {
 
 //Listar Serviços Prontos
 try {
-    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.observation, s.date, s.problem, c.name, c.cpf_cnpj, c.number FROM services s JOIN
-    clients c ON s.id_client = c.id WHERE s.status = :status ORDER BY s.id DESC');
+    $stmt = $pdo->prepare('SELECT s.id, s.status, s.equipment, s.observation, s.date, s.problem, c.name, c.cpf_cnpj, c.number, t.id AS technician_id, t.name AS technician_name 
+    FROM services s 
+    JOIN clients c ON s.id_client = c.id 
+    JOIN technicians t ON s.id_technical = t.id 
+    WHERE s.status = :status ORDER BY s.id DESC');
     $stmt->bindValue(':status', 3, PDO::PARAM_INT);
     $stmt->execute();
     $list_prontos = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -93,9 +102,10 @@ try {
     $dataChegada = isset($_GET['dataChegada']) ? $_GET['dataChegada'] : '';
     $dataEntregue = isset($_GET['dataEntregue']) ? $_GET['dataEntregue'] : '';
 
-    $sql = 'SELECT s.id, s.status, s.equipment, s.observation, s.date, s.updated_at, s.problem, c.name, c.cpf_cnpj, c.number 
+    $sql = 'SELECT s.id, s.status, s.equipment, s.observation, s.date, s.updated_at, s.problem, c.name, c.cpf_cnpj, c.number, t.id AS technician_id, t.name AS technician_name 
             FROM services s 
             JOIN clients c ON s.id_client = c.id 
+            JOIN technicians t ON s.id_technical = t.id 
             WHERE s.status = :status';
     $params = [':status' => 4];
 
@@ -126,4 +136,13 @@ try {
     exit;
 }
 
-//-----------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+
+// Buscar Técnicos para o Modal de Edição
+try {
+    $stmt = $pdo->prepare('SELECT id, name FROM technicians ORDER BY name ASC');
+    $stmt->execute();
+    $allTechnicians = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Erro ao Buscar Técnicos: " . $e->getMessage();
+}

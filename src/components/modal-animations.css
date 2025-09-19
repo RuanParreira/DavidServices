@@ -1,0 +1,106 @@
+/* Animações do Modal */
+
+/* Estado inicial do modal (escondido) */
+#editModal {
+  transition: opacity 0.3s ease-in-out;
+}
+
+#editModal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Animação de entrada do overlay */
+#editModal.modal-entering {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Animação de saída do overlay */
+#editModal.modal-leaving {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+/* Animações do conteúdo do modal */
+.modal-content {
+  transition:
+    transform 0.3s ease-out,
+    opacity 0.3s ease-out;
+  transform: scale(0.9) translateY(-20px);
+  opacity: 0;
+}
+
+/* Quando o modal está visível */
+#editModal:not(.hidden) .modal-content {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Animação de entrada do conteúdo */
+.modal-content.modal-content-entering {
+  animation: slideInScale 0.3s ease-out forwards;
+}
+
+/* Animação de saída do conteúdo */
+.modal-content.modal-content-leaving {
+  animation: slideOutScale 0.3s ease-in forwards;
+}
+
+/* Keyframes para as animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInScale {
+  from {
+    transform: scale(0.9) translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutScale {
+  from {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.9) translateY(-20px);
+    opacity: 0;
+  }
+}
+
+/* Animação mais suave para dispositivos que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  #editModal,
+  .modal-content {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .modal-content.modal-content-entering,
+  .modal-content.modal-content-leaving {
+    animation: none;
+  }
+
+  #editModal.modal-entering,
+  #editModal.modal-leaving {
+    animation: none;
+  }
+}
