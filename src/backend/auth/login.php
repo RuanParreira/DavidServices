@@ -1,6 +1,5 @@
 <?php
 require __DIR__ . '/../conn.php';
-
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,9 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['password'])) {
         session_regenerate_id(true);
         $_SESSION['user_id'] = $user['id'];
-        $_SESSION['welcome_message'] = 'Bem-vindo, ' . htmlspecialchars($user['name']) . '!';
+        $_SESSION['welcome_message'] = 'Bem-vindo ao DavidServices!';
         header('Location: ../../../pages/dashBoard');
     } else {
-        echo 'Email ou senha incorretos.';
+        $_SESSION['error_message'] = "Email ou Senha Invalidos!";
+        header('Location: /davidServices');
     }
 }

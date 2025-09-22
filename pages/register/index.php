@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form action="<?php echo '../../src/backend/register.php'; ?>" method="POST">
+    <form action="../../src/backend/auth/register.php" method="POST">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" required maxlength="100">
 

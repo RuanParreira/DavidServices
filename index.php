@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,8 +15,10 @@
 </head>
 
 <body>
+  <!-- Mensagem de Sucesso ou Erro-->
+  <?php include __DIR__ . '/src/includes/resultMessage.php'; ?>
   <main class="main-form bg-blue-200">
-    <form action="<?php echo 'src/backend/auth/login.php'; ?>" class="form-style" method="POST">
+    <form action="<?php echo 'src/backend/auth/login.php'; ?>" class="form-style" method="POST" autocomplete="off">
       <img src="./public/logo.jpg" alt="logo da empresa" class="w-18 h-18 bg-blue-600 rounded-full -mb-4" />
       <h1 class="text-blue-600 text-center p-6 text-4xl font-bold">DavidServices</h1>
       <label class="flex flex-col w-full">
@@ -41,6 +47,7 @@
     </div>
   </main>
   <script src="src/scripts/form.js"></script>
+  <script src="src/scripts/resultMessage.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/conn.php';
+require __DIR__ . '../../conn.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitização e validação dos dados
