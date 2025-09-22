@@ -11,21 +11,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = filter_input(INPUT_POST, 'visit_id', FILTER_VALIDATE_INT);
     if ($id === false || $id === null || $id <= 0) {
         $_SESSION['error_message'] = "ID da visita inválido.";
-        header('Location: /davidServices/pages/visits');
+        header('Location: ../../../pages/visits');
         exit;
     }
 
     // Verificar se todos os campos estão preenchidos
     if (empty($address) || empty($technician_id) || empty($id)) {
         $_SESSION['error_message'] = "Todos os campos são obrigatórios.";
-        header('Location: /davidServices/pages/visits');
+        header('Location: ../../../pages/visits');
         exit;
     }
 
     // Verifica o endereço
     if (strlen($address) > 255) {
         $_SESSION['error_message'] = "O endereço não pode exceder 255 caracteres.";
-        header('Location: /davidServices/pages/visits');
+        header('Location: ../../../pages/visits');
         exit;
     }
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $technician_id = filter_var($technician_id, FILTER_VALIDATE_INT);
     if ($technician_id === false || $technician_id <= 0) {
         $_SESSION['error_message'] = "ID do técnico inválido.";
-        header('Location: /davidServices/pages/visits');
+        header('Location: ../../../pages/visits');
         exit;
     }
 
@@ -44,12 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         if (!$stmt->fetch()) {
             $_SESSION['error_message'] = "Técnico não encontrado.";
-            header('Location: /davidServices/pages/visits');
+            header('Location: ../../../pages/visits');
             exit;
         }
     } catch (PDOException $e) {
         $_SESSION['error_message'] = "Erro ao verificar técnico: " . $e->getMessage();
-        header('Location: /davidServices/pages/visits');
+        header('Location: ../../../pages/visits');
         exit;
     }
 
@@ -64,11 +64,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $_SESSION['error_message'] = "Nenhuma alteração feita ou Visita não encontrada.";
         }
-        header('Location: /davidServices/pages/visits');
+        header('Location: ../../../pages/visits');
         exit;
     } catch (PDOException $e) {
         $_SESSION['error_message'] = "Erro ao atualizar a visita: " . $e->getMessage();
-        header('Location: /davidServices/pages/visits');
+        header('Location: ../../../pages/visits');
         exit;
     }
 }

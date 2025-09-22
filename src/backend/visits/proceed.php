@@ -6,8 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'] ?? null;
 
     if (!$id || !filter_var($id, FILTER_VALIDATE_INT)) {
-        $_SESSION['error_message'] = 'ID de serviço inválido.';
-        header('Location: ../../../pages/notStart');
+        $_SESSION['error_message'] = 'ID da visita inválido.';
+        header('Location: ../../../pages/visits');
         exit;
     }
 

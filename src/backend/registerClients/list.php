@@ -14,7 +14,7 @@ try {
     $resultClients = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $_SESSION['error_message'] = "Erro ao Buscar Cliente: ";
-    header('Location: /davidServices/pages/registerClients');
+    header('Location: ../../../pages/registerClients');
     exit;
 }
 

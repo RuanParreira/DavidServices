@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = filter_input(INPUT_POST, 'service_id', FILTER_VALIDATE_INT);
     if ($id === false || $id === null || $id <= 0) {
         $_SESSION['error_message'] = "ID de Serviço inválido.";
-        header('Location: /davidServices/pages/finished');
+        header('Location: ../../../pages/finished');
         exit;
     }
 
@@ -23,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['error_message'] = "Serviço não encontrado.";
         }
 
-        header('Location: /davidServices/pages/finished');
+        header('Location: ../../../pages/finished');
         exit;
     } catch (PDOException $e) {
         $_SESSION['error_message'] = "Erro ao Deletar Serviço: " . $e->getMessage();
-        header('Location: /davidServices/pages/finished');
+        header('Location: ../../../pages/finished');
         exit;
     }
 }

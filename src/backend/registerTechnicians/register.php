@@ -26,36 +26,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verificar se todos os campos estão preenchidos
     if (empty($name) || empty($cpf) || empty($number) || empty($id_user)) {
         $_SESSION['error_message'] = "Todos os campos são obrigatórios.";
-        header('Location: /davidServices/pages/registerTechnicians');
+        header('Location: ../../../pages/registerTechnicians');
         exit;
     }
 
     //Verifica o Nome do Técnico
     if (strlen($name) > 100) {
         $_SESSION['error_message'] = "O nome não pode exceder 100 caracteres.";
-        header('Location: /davidServices/pages/registerTechnicians');
+        header('Location: ../../../pages/registerTechnicians');
         exit;
     } elseif (!preg_match('/^[\p{L} ]+$/u', $name)) {
         $_SESSION['error_message'] = "O nome deve conter apenas letras e espaços.";
-        header('Location: /davidServices/pages/registerTechnicians');
+        header('Location: ../../../pages/registerTechnicians');
         exit;
     }
 
     // Chama a função para validar CPF
     if (!(validarCPF($cpf))) {
         $_SESSION['error_message'] = "CPF inválido.";
-        header('Location: /davidServices/pages/registerTechnicians');
+        header('Location: ../../../pages/registerTechnicians');
         exit;
     }
 
     //Verificar Contato
     if (strlen($number) !== 10 && strlen($number) !== 11) {
         $_SESSION['error_message'] = "Número de contato inválido.";
-        header('Location: /davidServices/pages/registerTechnicians');
+        header('Location: ../../../pages/registerTechnicians');
         exit;
     } elseif (!preg_match('/^\d{1,11}$/', $number)) {
         $_SESSION['error_message'] = "Número de contato inválido.";
-        header('Location: /davidServices/pages/registerTechnicians');
+        header('Location: ../../../pages/registerTechnicians');
         exit;
     }
 
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     if ($stmt->fetch()) {
         $_SESSION['error_message'] = "Esse CPF já está cadastrado.";
-        header('Location: /davidServices/pages/registerTechnicians');
+        header('Location: ../../../pages/registerTechnicians');
         exit;
     }
 
@@ -77,12 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindValue(':i', $id_user, PDO::PARAM_INT);
         $stmt->execute();
         $_SESSION['success_message'] = 'Técnico cadastrado com sucesso!';
-        header('Location: /davidServices/pages/registerTechnicians');
+        header('Location: ../../../pages/registerTechnicians');
         exit;
     } catch (PDOException $e) {
         error_log($e->getMessage());
         $_SESSION['error_message'] = 'Erro ao cadastrar Técnico.';
-        header('Location: /davidServices/pages/registerTechnicians');
+        header('Location: ../../../pages/registerTechnicians');
         exit;
     }
 }

@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = filter_input(INPUT_POST, 'visit_id', FILTER_VALIDATE_INT);
     if ($id === false || $id === null || $id <= 0) {
         $_SESSION['error_message'] = "ID da Visita é inválido.";
-        header('Location: /davidServices/pages/visits');
+        header('Location: ../../../pages/visits');
         exit;
     }
 
@@ -23,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['error_message'] = "Visita não encontrado.";
         }
 
-        header('Location: /davidServices/pages/visits');
+        header('Location: ../../../pages/visits');
         exit;
     } catch (PDOException $e) {
         $_SESSION['error_message'] = "Erro ao Deletar Visita: " . $e->getMessage();
-        header('Location: /davidServices/pages/visits');
+        header('Location: ../../../pages/visits');
         exit;
     }
 }

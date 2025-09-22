@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = filter_input(INPUT_POST, 'client_id', FILTER_VALIDATE_INT);
     if ($id === false || $id === null || $id <= 0) {
         $_SESSION['error_message'] = "ID de Cliente inválido.";
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     }
 
@@ -23,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['error_message'] = "Cliente não encontrado.";
         }
 
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     } catch (PDOException $e) {
         $_SESSION['error_message'] = "Erro ao Deletar Cliente: " . $e->getMessage();
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     }
 }

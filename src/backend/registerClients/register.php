@@ -42,36 +42,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verificar se todos os campos estão preenchidos
     if (empty($name) || empty($cpf_cnpj) || empty($number) || empty($id_user)) {
         $_SESSION['error_message'] = "Todos os campos são obrigatórios.";
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     }
 
     //Verifica o Nome do Cliente
     if (strlen($name) > 100) {
         $_SESSION['error_message'] = "O nome não pode exceder 100 caracteres.";
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     } elseif (!preg_match('/^[\p{L} ]+$/u', $name)) {
         $_SESSION['error_message'] = "O nome deve conter apenas letras e espaços.";
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     }
 
     // Chama a função para validar CPF/CNPJ
     if (!(validarCPF($cpf_cnpj) || validarCNPJ($cpf_cnpj))) {
         $_SESSION['error_message'] = "CPF/CNPJ inválido.";
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     }
 
     //Verificar Contato
     if (strlen($number) !== 10 && strlen($number) !== 11) {
         $_SESSION['error_message'] = "Número de contato inválido.";
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     } elseif (!preg_match('/^\d{1,11}$/', $number)) {
         $_SESSION['error_message'] = "Número de contato inválido.";
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     }
 
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     if ($stmt->fetch()) {
         $_SESSION['error_message'] = "Esse CPF/CNPJ já está cadastrado.";
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     }
 
@@ -93,12 +93,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindValue(':i', $id_user, PDO::PARAM_INT);
         $stmt->execute();
         $_SESSION['success_message'] = 'Cliente cadastrado com sucesso!';
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     } catch (PDOException $e) {
         error_log($e->getMessage());
         $_SESSION['error_message'] = 'Erro ao cadastrar cliente.';
-        header('Location: /davidServices/pages/registerClients');
+        header('Location: ../../../pages/registerClients');
         exit;
     }
 }

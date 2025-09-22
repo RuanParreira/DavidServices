@@ -8,15 +8,15 @@ function getRedirectUrl()
     $referer = $_SERVER['HTTP_REFERER'] ?? '';
 
     if (strpos($referer, '/inProgress') !== false) {
-        return '/davidServices/pages/inProgress';
+        return '../../../pages/inProgress';
     } elseif (strpos($referer, '/notStart') !== false) {
-        return '/davidServices/pages/notStart';
+        return '../../../pages/notStart';
     } elseif (strpos($referer, '/ready') !== false) {
-        return '/davidServices/pages/ready';
+        return '../../../pages/ready';
     }
 
     // Fallback padrão
-    return '/davidServices/pages/inProgress';
+    return '../../../pages/inProgress';
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

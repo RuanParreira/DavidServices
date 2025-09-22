@@ -50,7 +50,7 @@ try {
     $resultTechnicians = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $_SESSION['error_message'] = "Erro ao Buscar Técnico: ";
-    header('Location: /davidServices/pages/registertechnicians');
+    header('Location: ../../../pages/visits');
     exit;
 }
 

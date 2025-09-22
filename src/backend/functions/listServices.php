@@ -132,7 +132,7 @@ try {
     $list_finalizados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $_SESSION['error_message'] = "Erro ao Buscar Serviços: " . $e->getMessage();
-    header('Location: /davidServices/pages/registerClients');
+    header('Location: ../../../pages/registerClients');
     exit;
 }
 
