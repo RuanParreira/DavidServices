@@ -1,17 +1,60 @@
 @layer components {
   .menu-lateral {
-    @apply fixed top-0 left-0 flex h-full w-[16rem] flex-col border-r border-gray-300 bg-white;
+    @apply fixed top-0 left-0 flex h-full w-[16rem] flex-col border-r border-gray-300 bg-white transition-all duration-300;
   }
   .itens-menu-active {
     @apply flex w-full items-center rounded-lg bg-blue-600 px-3 py-3 text-left text-white transition-colors;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .itens-menu {
     @apply flex w-full items-center rounded-lg px-3 py-3 text-left text-gray-700 transition-colors hover:bg-blue-400/60 hover:text-blue-600;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .icons-menu {
     @apply mr-3 text-lg;
   }
+  .layer-btn-sair {
+    @apply mt-auto flex flex-col gap-2 border-t border-gray-300 p-4;
+  }
   .btn-sair {
     @apply inline-flex h-10 w-full items-center justify-center space-x-1 rounded-md border border-gray-300 bg-blue-600 text-sm font-medium whitespace-nowrap text-white transition-colors hover:bg-blue-700;
+  }
+  .layer-titulo-menu {
+    @apply flex items-center justify-between border-b border-gray-300 p-4;
+    overflow: hidden;
+  }
+  .titulo-menu {
+    @apply text-2xl font-semibold text-blue-600;
+  }
+  .img-titulo-menu {
+    @apply flex h-8 w-8 items-center justify-center rounded-full;
+  }
+  .btn-fechar-menu {
+    @apply cursor-pointer rounded-lg text-gray-600 transition-all hover:text-gray-800;
+  }
+
+  /* Menu Fechado */
+
+  .menu-lateral-fechado {
+    @apply fixed top-0 left-0 flex h-screen w-16 flex-col border-r border-gray-200 bg-white transition-all duration-300;
+  }
+
+  .itens-menu-fechado {
+    @apply flex w-full items-center justify-center rounded-lg px-3 py-3 text-center text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600;
+  }
+  .itens-menu-active-fechado {
+    @apply flex w-full items-center justify-center rounded-lg bg-blue-600 px-3 py-3 text-center text-white transition-colors;
+  }
+  .icons-menu-fechado {
+    @apply text-center text-lg;
+  }
+  .layer-btn-sair-fechado {
+    @apply p-2;
+  }
+
+  .btn-sair-fechado {
+    @apply flex h-10 w-full items-center justify-center rounded-md border border-gray-300 bg-blue-600 text-sm font-medium whitespace-nowrap text-white transition-colors hover:bg-blue-700;
   }
 }

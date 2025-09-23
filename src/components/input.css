@@ -18,7 +18,10 @@
 
 @layer components {
   .main-pages {
-    @apply ml-[16rem] h-screen w-[calc(100%-16rem)] overflow-y-auto bg-zinc-100;
+    @apply ml-[16rem] h-screen w-[calc(100%-16rem)] overflow-y-auto bg-zinc-100 transition-all duration-300;
+  }
+  .main-pages-fechado {
+    @apply ml-[4rem] h-screen w-[calc(100%-4rem)] overflow-y-auto bg-zinc-100 transition-all duration-300;
   }
 
   /* Titulo */

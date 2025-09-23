@@ -3,6 +3,7 @@
 <?php
 require __DIR__ . '/../../src/backend/functions/geral.php';
 require __DIR__ . '/../../src/backend/functions/listServices.php';
+require __DIR__ . '/../../src/includes/menu_state.php';
 ?>
 
 <head>
@@ -11,7 +12,7 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
 </head>
 
 <body>
-    <main class="main-pages">
+    <main class="<?= $mainPagesClass ?>">
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
         <!-- Mensagem de Sucesso -->
         <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
@@ -234,8 +235,8 @@ require __DIR__ . '/../../src/backend/functions/listServices.php';
             </div>
         </div>
     </main>
-    <script src="../../src/scripts/resultMessage.js"></script>
     <script src="../../src/scripts/changeServices.js"></script>
+    <?php include __DIR__ . '../../../src/includes/scripts.php' ?>
 </body>
 
 </html>
