@@ -23,21 +23,3 @@ try {
     header('Location: ../../../pages/registerService');
     exit;
 }
-
-// Pegar o Primeiro e Segundo Nome do Técnico
-function getFirstTwoNames($fullName)
-{
-    if (empty($fullName)) {
-        return '';
-    }
-
-    $names = explode(' ', trim($fullName));
-
-    // Se só tem um nome, retorna ele
-    if (count($names) == 1) {
-        return $names[0];
-    }
-
-    // Retorna primeiro e segundo nome
-    return $names[0] . ' ' . $names[1];
-}

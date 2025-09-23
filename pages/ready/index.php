@@ -47,7 +47,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                 <div class="layer-titulo-default-card">
                                     <div class="flex items-center space-x-0.5">
                                         <h3>
-                                            <?= htmlspecialchars($services['name']) ?>
+                                            <?= htmlspecialchars(getFirstTwoNames($services['name'])) ?>
                                         </h3>
                                         <i class="bi bi-dash text-gray-600"></i>
                                         <span class="bg-green-100 text-green-600">
@@ -108,7 +108,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                     <div class="iten-default-card">
                                         <i class="bi bi-people"></i>
                                         <span>
-                                            Técnico: <?= htmlspecialchars($services['technician_name']) ?>
+                                            Técnico: <?= htmlspecialchars(getFirstTwoNames($services['technician_name'])) ?>
                                         </span>
                                     </div>
                                     <div class="mt-4">
