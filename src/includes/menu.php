@@ -52,7 +52,7 @@ $layerBtnSairClass = $menuClosed ? 'layer-btn-sair-fechado' : 'layer-btn-sair';
         <i class="bi bi-calendar"></i>
         <span>Visitas</span>
     </a>
-    <a href="../registerTechnicians" class="<?= ($currentPage == 'technicians') ? "text-blue-600" : "" ?>">
+    <a href="../registerTechnicians" class="<?= ($currentPage == 'registerTechnicians') ? "text-blue-600" : "" ?>">
         <i class="bi bi-people"></i>
         <span>Técnicos</span>
     </a>
