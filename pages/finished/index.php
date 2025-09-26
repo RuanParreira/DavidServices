@@ -16,15 +16,18 @@ require __DIR__ . '/../../src/includes/menu_state.php';
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
         <!-- Mensagem de Sucesso -->
         <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
-        <div class="p-6 h-full">
+        <div class="cont-page">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
                 <div class="layer-titulo">
                     <i class="bi bi-archive icons-titulo-default text-2xl"></i>
-                    <h2>
+                    <h2 class="lg:hidden">
+                        Finalizados
+                    </h2>
+                    <h2 class="hidden lg:inline">
                         Serviços - Finalizados
                     </h2>
-                    <span class="bg-green-100 text-green-600">
+                    <span class="bg-green-100 text-green-600 truncate">
                         <?= htmlspecialchars($total_finalizados) . ' Serviços' ?>
                     </span>
                 </div>
@@ -35,7 +38,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                     </h2>
                     <!-- Campo de Busca dos Serviços -->
                     <form method="get" autocomplete="off" class="layer-search-finalizados ">
-                        <div class="w-full">
+                        <div class="w-full col-span-2">
                             <label for="search" class="titulo-search-finalizados">
                                 Buscar por nome, CPF ou equipamento
                             </label>

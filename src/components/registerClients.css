@@ -3,7 +3,7 @@
     @apply grid grid-cols-1 justify-center gap-6 lg:grid-cols-2;
   }
   .form-register {
-    @apply h-fit rounded-xl border border-gray-100 bg-white p-6 shadow-sm;
+    @apply h-fit rounded-xl border border-gray-100 bg-white px-[4%] py-6 shadow-sm lg:px-6;
   }
   .input-name-client {
     @apply w-full rounded-lg border border-gray-300 px-3 py-2 transition-colors focus:border-transparent focus:ring-2 focus:ring-blue-600;
@@ -15,10 +15,10 @@
     @apply mt-1 mb-1 w-full cursor-pointer rounded-lg bg-blue-600 px-4 py-2.5 font-medium text-white transition-colors hover:bg-blue-700;
   }
   .btn-buscar {
-    @apply flex cursor-pointer items-center space-x-2 rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700;
+    @apply flex cursor-pointer items-center rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 lg:space-x-2;
   }
   .btn-limpar-busca {
-    @apply flex h-full cursor-pointer items-center space-x-2 rounded-lg bg-red-600/10 px-4 text-red-600 transition-colors hover:text-red-700;
+    @apply flex h-full cursor-pointer items-center rounded-lg bg-red-600/10 px-4 text-red-600 transition-colors hover:text-red-700 lg:space-x-2;
   }
   .icon-default-client {
     @apply absolute top-1/2 left-3 -translate-y-1/2 transform text-lg text-gray-400;
@@ -37,7 +37,7 @@
     }
   }
   .layer-lista-clients {
-    @apply rounded-xl border border-gray-100 bg-white p-6 shadow-sm;
+    @apply rounded-xl border border-gray-100 bg-white px-[4%] py-6 shadow-sm lg:px-6;
   }
   .icon-search-client {
     @apply absolute top-1/2 left-3 -translate-y-1/2 transform text-lg text-gray-400;

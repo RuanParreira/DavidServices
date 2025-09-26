@@ -18,7 +18,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
         <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
 
         <!-- Conteudo Da Pagina -->
-        <div class="p-6 h-full">
+        <div class="cont-page">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
                 <div class="layer-titulo">

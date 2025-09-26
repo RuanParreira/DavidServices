@@ -16,15 +16,18 @@ require __DIR__ . '/../../src/includes/menu_state.php';
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
         <!-- Mensagem de Sucesso -->
         <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
-        <div class="p-6 h-full">
+        <div class="cont-page">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
                 <div class="layer-titulo">
                     <i class="bi bi-check2-circle icons-titulo-default text-3xl"></i>
-                    <h2>
+                    <h2 class="lg:hidden">
+                        Prontos
+                    </h2>
+                    <h2 class="hidden lg:inline">
                         Serviços - Prontos
                     </h2>
-                    <span class="bg-green-100 text-green-600">
+                    <span class="bg-green-100 text-green-600 truncate">
                         <?= htmlspecialchars($total_prontos) . ' Serviços' ?>
                     </span>
                 </div>
@@ -50,14 +53,14 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                             <?= htmlspecialchars(getFirstTwoNames($services['name'])) ?>
                                         </h3>
                                         <i class="bi bi-dash text-gray-600"></i>
-                                        <span class="bg-green-100 text-green-600">
+                                        <span class="bg-green-100 text-green-600 truncate">
                                             Pronto
                                         </span>
                                     </div>
                                     <div class="flex space-x-2 items-center">
                                         <button
                                             type="button"
-                                            class="cursor-pointer opacity-0 group-hover:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-client"
+                                            class="cursor-pointer lg:opacity-0 lg:group-hover:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-client"
                                             data-id="<?= htmlspecialchars($services['id']); ?>"
                                             data-status="<?= htmlspecialchars($services['status']); ?>"
                                             data-date="<?= htmlspecialchars($services['date']); ?>"
@@ -68,7 +71,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                         </button>
                                         <form action="../../src/backend/functions/deleteServices.php" method="POST">
                                             <input type="hidden" name="service_id" value="<?= htmlspecialchars($services['id']); ?>">
-                                            <button type="submit" class="cursor-pointer opacity-0 group-hover:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja deletar este Serviço?');">
+                                            <button type="submit" class="cursor-pointer lg:opacity-0 lg:group-hover:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja deletar este Serviço?');">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
@@ -171,7 +174,6 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                         Editar Serviço
                     </h2>
                 </div>
-
                 <form action="../../src/backend/functions/updateServices.php" method="post" class="space-y-4" autocomplete="off">
                     <input type="hidden" name="service_id" id="editClientId" value="">
                     <div>
@@ -180,7 +182,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                         </label>
                         <input id="edit_equipment" name="edit_equipment" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" value="" maxlength="100">
                     </div>
-                    <div class="grid grid-cols-2 space-x-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div class="h-full">
                             <label for="edit_date" class="block text-sm font-medium text-gray-700 mb-2">
                                 Data
@@ -216,7 +218,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                 <option value="">Selecione um Técnico</option>
                                 <?php foreach ($allTechnicians as $technician): ?>
                                     <option value="<?= htmlspecialchars($technician['id']) ?>">
-                                        <?= htmlspecialchars($technician['name']) ?>
+                                        <?= htmlspecialchars(getFirstTwoNames($technician['name'])) ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>

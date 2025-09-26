@@ -16,7 +16,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
         <?php include __DIR__ . '/../../src/includes/menu.php'; ?>
         <!-- Mensagem de Sucesso -->
         <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
-        <div class="p-6 h-full">
+        <div class="cont-page">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
                 <div class="layer-titulo">
@@ -187,7 +187,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                 <div class="flex items-center gap-2 text-gray-600">
                                                     <i class="bi bi-people text-blue-600"></i>
                                                     <p class="text-sm">
-                                                        Técnico: <?= htmlspecialchars($visit['technical_name']); ?>
+                                                        Técnico: <?= htmlspecialchars(getFirstTwoNames($visit['technical_name'])); ?>
                                                     </p>
                                                 </div>
                                                 <div class="flex items-center justify-between text-sm text-gray-600">
@@ -201,7 +201,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                         <!-- Botao para editar a visita -->
                                                         <button
                                                             type="button"
-                                                            class="cursor-pointer opacity-0 group-hover/card:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-visit"
+                                                            class="cursor-pointer lg:opacity-0 lg:group-hover/card:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-visit"
                                                             data-id="<?= htmlspecialchars($visit['id']); ?>"
                                                             data-address="<?= htmlspecialchars($visit['address']); ?>"
                                                             data-technical-id="<?= htmlspecialchars($visit['id_technical']); ?>">
@@ -210,7 +210,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                         <!-- Botao para deletar a visita -->
                                                         <form action="../../src/backend/visits/delete.php" method="POST">
                                                             <input type="hidden" name="visit_id" value="<?= htmlspecialchars($visit['id']); ?>">
-                                                            <button type="submit" class="cursor-pointer opacity-0 group-hover/card:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja cancelar esta visita?');">
+                                                            <button type="submit" class="cursor-pointer lg:opacity-0 lg:group-hover/card:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja cancelar esta visita?');">
                                                                 <i class="bi bi-x-circle"></i>
                                                             </button>
                                                         </form>

@@ -10,7 +10,7 @@
   }
 
   .layer-form-services {
-    @apply w-full max-w-2xl rounded-xl border border-gray-100 bg-white p-6 shadow-sm;
+    @apply w-full max-w-2xl rounded-xl border border-gray-100 bg-white px-[4%] py-6 shadow-sm lg:px-6;
   }
   .titulo-form-services {
     @apply mb-6 text-xl font-semibold text-gray-900;

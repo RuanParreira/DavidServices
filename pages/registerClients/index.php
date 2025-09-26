@@ -18,7 +18,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
         <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
 
         <!-- Conteudo Principal -->
-        <div class="p-6 h-full">
+        <div class="cont-page">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
                 <div class="layer-titulo">
@@ -92,7 +92,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                 <?php endif; ?>
                                 <button type="submit" class="btn-buscar">
                                     <i class="bi bi-search"></i>
-                                    <span>Buscar</span>
+                                    <span class="hidden lg:block">Buscar</span>
                                 </button>
                             </div>
                         </form>
@@ -106,7 +106,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                             <?php else: ?>
                                 <?php foreach ($resultClients as $client): ?>
                                     <div class="cont-cards-client group">
-                                        <div class="flex justify-between">
+                                        <div class="flex space-x-2 lg:space-x-0 justify-between">
                                             <h3 class="font-semibold text-gray-900 mb-1">
                                                 <?= htmlspecialchars($client['name']); ?>
                                             </h3>
@@ -115,7 +115,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                     <!-- Adicione um id ao botão de editar e um atributo data-id para identificar o cliente -->
                                                     <button
                                                         type="button"
-                                                        class="cursor-pointer opacity-0 group-hover:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-client"
+                                                        class="cursor-pointer lg:opacity-0 lg:group-hover:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-client"
                                                         data-id="<?= htmlspecialchars($client['id']); ?>"
                                                         data-name="<?= htmlspecialchars($client['name']); ?>"
                                                         data-number="<?= htmlspecialchars($client['number']); ?>">
@@ -124,7 +124,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                 </div>
                                                 <form action="../../src/backend/registerClients/delete.php" method="POST">
                                                     <input type="hidden" name="client_id" value="<?= htmlspecialchars($client['id']); ?>">
-                                                    <button type="submit" class="cursor-pointer opacity-0 group-hover:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja deletar este cliente?');">
+                                                    <button type="submit" class="cursor-pointer lg:opacity-0 lg:group-hover:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja deletar este cliente?');">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </form>

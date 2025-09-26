@@ -14,6 +14,62 @@ $btnSairClass = $menuClosed ? 'btn-sair-fechado' : 'btn-sair';
 $layerBtnSairClass = $menuClosed ? 'layer-btn-sair-fechado' : 'layer-btn-sair';
 ?>
 
+<!-- Menu Mobile -->
+<div id="menuOverlay" class="menu-overlay" onclick="closeNav()"></div>
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+        <i class="bi bi-x-lg"></i>
+    </a>
+    <a href="../dashBoard" class="<?= ($currentPage == 'dashBoard') ? "text-blue-600" : "" ?>">
+        <i class="bi bi-columns-gap"></i>
+        <span>Dashboard</span>
+    </a>
+    <a href="../registerClients" class="<?= ($currentPage == 'registerClients') ? "text-blue-600" : "" ?>">
+        <i class="bi bi-person-plus"></i>
+        <span>Clientes</span>
+    </a>
+    <a href="../registerServices" class="<?= ($currentPage == 'registerServices') ? "text-blue-600" : "" ?>">
+        <i class="bi bi-plus-circle"></i>
+        <span>Serviços</span>
+    </a>
+    <a href="../notStart" class="<?= ($currentPage == 'notStart') ? "text-blue-600" : "" ?>">
+        <i class="bi bi-clock"></i>
+        <span>Não Começou</span>
+    </a>
+    <a href="../inProgress" class="<?= ($currentPage == 'inProgress') ? "text-blue-600" : "" ?>">
+        <i class="bi bi-play-circle"></i>
+        <span>Prontos</span>
+    </a>
+    <a href="../finished" class="<?= ($currentPage == 'finished') ? "text-blue-600" : "" ?>">
+        <i class="bi bi-archive"></i>
+        <span>Finalizados</span>
+    </a>
+    <a href="../visits" class="<?= ($currentPage == 'visits') ? "text-blue-600" : "" ?>">
+        <i class="bi bi-calendar"></i>
+        <span>Visitas</span>
+    </a>
+    <a href="../registerTechnicians" class="<?= ($currentPage == 'technicians') ? "text-blue-600" : "" ?>">
+        <i class="bi bi-people"></i>
+        <span>Técnicos</span>
+    </a>
+    <a href="../../src/backend/auth/logout.php" class="text-red-500 <?= ($currentPage == 'logout') ? "text-blue-600" : "" ?>">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Sair</span>
+    </a>
+</div>
+
+<!-- Abrir Menu Mobile -->
+<div class="lg:hidden flex justify-between w-full bg-gray-200 fixed top-0 z-50 py-4 px-[4%] ">
+    <a href="../dashBoard" class="flex items-center gap-2">
+        <img src="../../public/logo.jpg" alt="Logo da Empresa" class="rounded-full h-10">
+        <h2 class="titulo-menu">Davidcom</h2>
+    </a>
+    <button class="openbtn text-4xl text-gray-600 " onclick="openNav()">
+        <i class="bi bi-list"></i>
+    </button>
+</div>
+
+<!-- Menu Desktop -->
 <aside class="<?= $menuClass ?>">
     <div class="layer-titulo-menu">
         <div class="flex items-center space-x-2 <?= $titleClass ?>">

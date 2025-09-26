@@ -163,3 +163,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+// Menu Mobile
+
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("menuOverlay").classList.add("active");
+  // Opcional: impedir scroll do body quando menu está aberto
+  document.body.style.overflow = "hidden";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("menuOverlay").classList.remove("active");
+  // Restaurar scroll do body
+  document.body.style.overflow = "auto";
+}

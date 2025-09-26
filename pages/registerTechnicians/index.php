@@ -19,7 +19,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
         <?php include __DIR__ . '/../../src/includes/resultMessage.php'; ?>
 
         <!-- Conteudo Da Pagina -->
-        <div class="p-6 h-full">
+        <div class="cont-page">
             <div class="space-y-6 h-full">
                 <!-- Titulo -->
                 <div class="layer-titulo">
@@ -29,7 +29,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                     </h2>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 py-6 px-[4%] lg:px-6">
                         <div class="flex items-center gap-3 mb-6">
                             <i class="bi bi-people text-blue-600 text-2xl"></i>
                             <h2 class="text-xl font-semibold text-gray-900">Novo Técnico</h2>
@@ -64,7 +64,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                             </button>
                         </form>
                     </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 py-6 px-[4%] lg:px-6">
                         <div class="flex items-center mb-6">
                             <i class="bi bi-person text-blue-600 text-2xl"></i>
                             <h2 class="text-xl font-semibold text-gray-900">
@@ -88,7 +88,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                 <?php endif; ?>
                                 <button type="submit" class="btn-buscar">
                                     <i class="bi bi-search"></i>
-                                    <span>Buscar</span>
+                                    <span class="hidden lg:block">Buscar</span>
                                 </button>
                             </div>
                         </form>
@@ -110,7 +110,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                     <!-- Adicione um id ao botão de editar e um atributo data-id para identificar o cliente -->
                                                     <button
                                                         type="button"
-                                                        class="cursor-pointer opacity-0 group-hover:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-client"
+                                                        class="cursor-pointer lg:opacity-0 lg:group-hover:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-client"
                                                         data-id="<?= htmlspecialchars($technical['id']); ?>"
                                                         data-name="<?= htmlspecialchars($technical['name']); ?>"
                                                         data-number="<?= htmlspecialchars($technical['number']); ?>">
@@ -119,7 +119,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                 </div>
                                                 <form action="../../src/backend/registerTechnicians/delete.php" method="POST">
                                                     <input type="hidden" name="technical_id" value="<?= htmlspecialchars($technical['id']); ?>">
-                                                    <button type="submit" class="cursor-pointer opacity-0 group-hover:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja deletar este cliente?');">
+                                                    <button type="submit" class="cursor-pointer lg:opacity-0 lg:group-hover:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja deletar este cliente?');">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </form>

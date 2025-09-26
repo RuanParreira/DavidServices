@@ -1,6 +1,6 @@
 @layer components {
   .menu-lateral {
-    @apply fixed top-0 left-0 flex h-full w-[16rem] flex-col border-r border-gray-300 bg-white transition-all duration-300;
+    @apply fixed top-0 left-0 hidden h-full w-[16rem] flex-col border-r border-gray-300 bg-white transition-all duration-300 lg:flex;
   }
   .itens-menu-active {
     @apply flex w-full items-center rounded-lg bg-blue-600 px-3 py-3 text-left text-white transition-colors;
@@ -38,7 +38,7 @@
   /* Menu Fechado */
 
   .menu-lateral-fechado {
-    @apply fixed top-0 left-0 flex h-screen w-16 flex-col border-r border-gray-200 bg-white transition-all duration-300;
+    @apply fixed top-0 left-0 hidden h-screen w-16 flex-col border-r border-gray-200 bg-white transition-all duration-300 lg:flex;
   }
 
   .itens-menu-fechado {
@@ -56,5 +56,30 @@
 
   .btn-sair-fechado {
     @apply flex h-10 w-full items-center justify-center rounded-md border border-gray-300 bg-blue-600 text-sm font-medium whitespace-nowrap text-white transition-colors hover:bg-blue-700;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    @apply fixed top-0 right-0 z-[100] h-full w-0 overflow-x-hidden bg-gray-950 pt-[60px] transition-all duration-500;
+  }
+
+  .sidebar a {
+    @apply flex gap-4 px-4 py-4 pl-6 text-2xl whitespace-nowrap text-gray-400 no-underline transition-colors duration-300;
+  }
+
+  .sidebar a:hover {
+    @apply text-gray-100;
+  }
+
+  .sidebar .closebtn {
+    @apply absolute top-0 right-0 text-4xl;
+  }
+
+  .menu-overlay {
+    @apply fixed top-0 left-0 z-[99] hidden h-full w-full bg-black/50;
+  }
+
+  .menu-overlay.active {
+    @apply block;
   }
 }
