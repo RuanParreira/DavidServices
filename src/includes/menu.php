@@ -38,6 +38,10 @@ $layerBtnSairClass = $menuClosed ? 'layer-btn-sair-fechado' : 'layer-btn-sair';
     </a>
     <a href="../inProgress" class="<?= ($currentPage == 'inProgress') ? "text-blue-600" : "" ?>">
         <i class="bi bi-play-circle"></i>
+        <span>Em Progresso</span>
+    </a>
+    <a href="../ready" class="<?= ($currentPage == 'ready') ? "text-blue-600" : "" ?>">
+        <i class="bi bi-check2-circle"></i>
         <span>Prontos</span>
     </a>
     <a href="../finished" class="<?= ($currentPage == 'finished') ? "text-blue-600" : "" ?>">
