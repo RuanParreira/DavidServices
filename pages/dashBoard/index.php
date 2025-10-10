@@ -175,23 +175,24 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                 </div>
                             <?php else: ?>
                                 <?php foreach ($ultimos_servicos as $servicos): ?>
-                                    <div class="flex border border-gray-200 items-center justify-between px-4 p-2 rounded-lg">
-                                        <div>
+                                    <div class="flex gap-6 border border-gray-200 items-center justify-between px-4 p-2 rounded-lg">
+                                        <div class="w-full flex flex-col gap-1 md:gap-0">
                                             <h3 class="font-semibold text-sm text-blue-600">
                                                 <!-- Puxar no banco de dados -->
                                                 <?= htmlspecialchars($servicos['client_name']); ?>
                                             </h3>
-                                            <div class="flex items-center space-x-2">
+                                            <div class="flex flex-col md:flex-row lg:items-center gap-1 md:gap-2">
                                                 <p class="text-sm text-gray-600">
                                                     <?= htmlspecialchars($servicos['equipment']); ?>
                                                 </p>
-                                                <span class="text-xl text-blue-600">-</span>
+                                                <span class="w-full bg-blue-600 h-px md:hidden"></span>
+                                                <span class="hidden md:block text-xl text-blue-600">-</span>
                                                 <p class="text-sm text-gray-600">
                                                     <?= htmlspecialchars($servicos['problem']); ?>
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="flex flex-col text-center space-y-1">
+                                        <div class="flex flex-col text-center space-y-1 w-40">
                                             <span class="px-2 py-0.5 rounded-full text-xs font-medium text-blue-600 bg-blue-600/20">
                                                 <?php
                                                 if ($servicos['status'] == 1) {

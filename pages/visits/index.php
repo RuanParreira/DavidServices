@@ -201,7 +201,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                         <!-- Botao para editar a visita -->
                                                         <button
                                                             type="button"
-                                                            class="cursor-pointer lg:opacity-0 lg:group-hover/card:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-visit"
+                                                            class="cursor-pointer transition-all text-blue-600 hover:text-blue-800 btn-edit-visit"
                                                             data-id="<?= htmlspecialchars($visit['id']); ?>"
                                                             data-address="<?= htmlspecialchars($visit['address']); ?>"
                                                             data-technical-id="<?= htmlspecialchars($visit['id_technical']); ?>">
@@ -210,8 +210,8 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                         <!-- Botao para deletar a visita -->
                                                         <form action="../../src/backend/visits/delete.php" method="POST">
                                                             <input type="hidden" name="visit_id" value="<?= htmlspecialchars($visit['id']); ?>">
-                                                            <button type="submit" class="cursor-pointer lg:opacity-0 lg:group-hover/card:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja cancelar esta visita?');">
-                                                                <i class="bi bi-x-circle"></i>
+                                                            <button type="submit" class="cursor-pointer transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja cancelar esta visita?');">
+                                                                <i class="bi bi-trash"></i>
                                                             </button>
                                                         </form>
                                                     </div>

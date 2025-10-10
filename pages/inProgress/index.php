@@ -46,21 +46,15 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                     <!-- Listagem de Serviços que Não Começou -->
                     <div class="layer-default-cards">
                         <?php foreach ($list_iniciados as $services): ?>
-                            <div class="card-default-conteudo group/card">
+                            <div class="card-default-conteudo">
                                 <div class="layer-titulo-default-card ">
-                                    <div class="flex items-center space-x-0.5">
-                                        <h3>
-                                            <?= htmlspecialchars(getFirstTwoNames($services['name'])) ?>
-                                        </h3>
-                                        <i class="bi bi-dash text-gray-600"></i>
-                                        <span class="bg-yellow-100 text-yellow-600 truncate">
-                                            Em Progresso
-                                        </span>
-                                    </div>
+                                    <h3>
+                                        <?= htmlspecialchars(getFirstTwoNames($services['name'])) ?>
+                                    </h3>
                                     <div class="flex space-x-2 items-center">
                                         <button
                                             type="button"
-                                            class="cursor-pointer lg:opacity-0 lg:group-hover/card:opacity-100 transition-all text-blue-600 hover:text-blue-800 btn-edit-client"
+                                            class="cursor-pointer text-blue-600 hover:text-blue-800 btn-edit-client"
                                             data-id="<?= htmlspecialchars($services['id']); ?>"
                                             data-status="<?= htmlspecialchars($services['status']); ?>"
                                             data-date="<?= htmlspecialchars($services['date']); ?>"
@@ -71,7 +65,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                         </button>
                                         <form action="../../src/backend/functions/deleteServices.php" method="POST">
                                             <input type="hidden" name="service_id" value="<?= htmlspecialchars($services['id']); ?>">
-                                            <button type="submit" class="cursor-pointer lg:opacity-0 lg:group-hover/card:opacity-100 transition-all text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja deletar este Serviço?');">
+                                            <button type="submit" class="cursor-pointer text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja deletar este Serviço?');">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
