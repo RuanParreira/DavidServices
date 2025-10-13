@@ -6,8 +6,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email =  strtolower(trim($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL));
     $password = trim($_POST['password'] ?? '');
 
+    if (empty($email) || empty($password)) {
+        $_SESSION['error_message'] = "Preencha todos os campos!";
+        header('Location: ../../../');
+        exit;
+    }
+
     if (!$email || !$password) {
-        echo 'Dados inválidos.';
+        $_SESSION['error_message'] = "Dados inválidos!";
+        header('Location: ../../../');
         exit;
     }
 
