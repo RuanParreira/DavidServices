@@ -80,7 +80,9 @@ $layerBtnSairClass = $menuClosed ? 'layer-btn-sair-fechado' : 'layer-btn-sair';
             <div class="img-titulo-menu">
                 <img src="../../public/logo.jpg" alt="Logo da Empresa" class="object-cover rounded-full">
             </div>
-            <h2 class="titulo-menu">Davidcom</h2>
+            <a href="../dashBoard">
+                <h2 class="titulo-menu">Davidcom</h2>
+            </a>
         </div>
         <button class="btn-fechar-menu">
             <i class="<?= $iconClass ?>"></i>

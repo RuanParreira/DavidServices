@@ -38,7 +38,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- cards de informações -->
                     <!-- Não Começou -->
-                    <div class="interface-cards-informacao">
+                    <a class="interface-cards-informacao" href="../notStart/">
                         <div class="conteudo-cards-informacao">
                             <div>
                                 <p class="titulo-cards-informacao">
@@ -56,9 +56,9 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                 <i class=" bi bi-clock text-xl text-gray-600"></i>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <!-- Em Progresso -->
-                    <div class="interface-cards-informacao">
+                    <a class="interface-cards-informacao" href="../inProgress/">
                         <div class="conteudo-cards-informacao">
                             <div>
                                 <p class="titulo-cards-informacao">
@@ -76,9 +76,9 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                     <i class="bi bi-play text-4xl text-yellow-500"></i>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <!-- Prontos  -->
-                    <div class="interface-cards-informacao">
+                    <a class="interface-cards-informacao" href="../ready/">
                         <div class="conteudo-cards-informacao">
                             <div>
                                 <p class="titulo-cards-informacao">
@@ -96,9 +96,9 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                     <i class="bi bi-check2-circle text-2xl text-green-500"></i>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <!-- Finalizados -->
-                    <div class="interface-cards-informacao">
+                    <a class="interface-cards-informacao" href="../finished/">
                         <div class="conteudo-cards-informacao">
                             <div>
                                 <p class="titulo-cards-informacao">
@@ -108,20 +108,20 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                 <p class="numero-cards-informacao">
                                     <?= htmlspecialchars($total_finalizados); ?>
                                 </p>
-                                <p class="pequena-descricao"">
+                                <p class="pequena-descricao">
                                     Serviços
                                 </p>
                             </div>
                             <div class=" interface-icone-informacao bg-blue-100">
-                                    <i class="bi bi-archive text-2xl text-blue-600"></i>
+                                <i class="bi bi-archive text-2xl text-blue-600"></i>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <!-- Relatorio Total -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Total de Clientes -->
-                    <div class="interface-cards-informacao">
+                    <a class="interface-cards-informacao" href="../registerClients/">
                         <div class="conteudo-cards-informacao">
                             <div>
                                 <p class="titulo-cards-informacao">
@@ -139,9 +139,9 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                 <i class=" bi bi-person text-2xl text-purple-600"></i>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <!-- Total de Serviços -->
-                    <div class="interface-cards-informacao">
+                    <a class="interface-cards-informacao" href="../registerServices/">
                         <div class="conteudo-cards-informacao">
                             <div>
                                 <p class="titulo-cards-informacao">
@@ -159,7 +159,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                 <i class=" bi bi-gear text-2xl text-zinc-600"></i>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="bg-white rounded-xl lg:h-[48%] shadow-sm border border-gray-100">
                     <div class="px-6 py-4 border-b border-gray-100">
@@ -192,8 +192,17 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="flex flex-col text-center space-y-1 w-40">
-                                            <span class="px-2 py-0.5 rounded-full text-xs font-medium text-blue-600 bg-blue-600/20">
+                                        <div class="flex flex-col text-center space-y-1 w-35">
+                                            <span class="px-2 py-0.5 rounded-full text-xs font-medium
+                                            <?php if ($servicos['status'] == 1) {
+                                                echo 'text-gray-600 bg-gray-600/20';
+                                            } elseif ($servicos['status'] == 2) {
+                                                echo 'text-yellow-500 bg-yellow-500/20';
+                                            } elseif ($servicos['status'] == 3) {
+                                                echo 'text-green-600 bg-green-600/20';
+                                            } elseif ($servicos['status'] == 4) {
+                                                echo 'text-blue-600 bg-blue-600/20';
+                                            } ?>">
                                                 <?php
                                                 if ($servicos['status'] == 1) {
                                                     echo  htmlspecialchars("Não Começou");
