@@ -4,6 +4,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputWrapper = input.parentElement; // div.relative que envolve o input
   let selectedClient = null;
 
+  // Função para colocar a primeira letra de cada palavra em maiúsculo (suporta acentos)
+  function toTitleCase(text) {
+    if (!text) return '';
+    return text
+      .toLowerCase()
+      .split(/\s+/)
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
   input.addEventListener("input", async function () {
     const query = input.value.trim();
     if (query.length < 2) {
@@ -51,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const pName = document.createElement("p");
       pName.className = "font-medium text-gray-900";
-      pName.textContent = client.name;
+      pName.textContent = toTitleCase(client.name);
 
       const pCpf = document.createElement("p");
       pCpf.className = "text-sm text-gray-600";
@@ -86,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const pName = document.createElement("p");
     pName.className = "font-medium text-gray-900";
-    pName.textContent = client.name;
+    pName.textContent = toTitleCase(client.name);
 
     const pCpf = document.createElement("p");
     pCpf.className = "text-sm text-gray-600";

@@ -179,7 +179,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                         <div class="w-full flex flex-col gap-1 md:gap-0">
                                             <h3 class="font-semibold text-sm text-blue-600">
                                                 <!-- Puxar no banco de dados -->
-                                                <?= htmlspecialchars($servicos['client_name']); ?>
+                                                <?= htmlspecialchars(toTitleCase($servicos['client_name'])); ?>
                                             </h3>
                                             <div class="flex flex-col md:flex-row lg:items-center gap-1 md:gap-2">
                                                 <p class="text-sm text-gray-600">

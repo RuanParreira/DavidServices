@@ -108,7 +108,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                     <div class="cont-cards-client">
                                         <div class="flex space-x-2 lg:space-x-0 justify-between">
                                             <h3 class="font-semibold text-gray-900 mb-1">
-                                                <?= htmlspecialchars($client['name']); ?>
+                                                <?= htmlspecialchars(toTitleCase($client['name'])); ?>
                                             </h3>
                                             <div class="flex space-x-2">
                                                 <div>

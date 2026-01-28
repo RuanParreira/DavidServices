@@ -47,13 +47,31 @@ function getFirstTwoNames($fullName)
         return '';
     }
 
-    $names = explode(' ', trim($fullName));
+    $fullName = trim($fullName);
+    // normaliza para minúsculas e converte para Title Case com suporte a multibyte
+    $fullName = mb_convert_case(mb_strtolower($fullName, 'UTF-8'), MB_CASE_TITLE, 'UTF-8');
 
-    // Se só tem um nome, retorna ele
-    if (count($names) == 1) {
+    $names = preg_split('/\s+/', $fullName);
+
+    if (count($names) === 1) {
         return $names[0];
     }
 
-    // Retorna primeiro e segundo nome
-    return $names[0] . ' ' . $names[1];
+    $second = $names[1];
+
+    // Se o segundo nome tiver até 3 caracteres e houver terceiro nome, inclui o terceiro
+    if (mb_strlen($second, 'UTF-8') <= 3 && isset($names[2])) {
+        return $names[0] . ' ' . $second . ' ' . $names[2];
+    }
+
+    return $names[0] . ' ' . $second;
+}
+
+function toTitleCase($text): string
+{
+    if (empty($text)) {
+        return '';
+    }
+    $text = trim($text);
+    return mb_convert_case(mb_strtolower($text, 'UTF-8'), MB_CASE_TITLE, 'UTF-8');
 }

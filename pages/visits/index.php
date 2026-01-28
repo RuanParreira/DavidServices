@@ -187,7 +187,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                 <div class="flex items-center gap-2">
                                                     <i class="bi bi-person text-blue-600"></i>
                                                     <p class="font-medium text-gray-900 text-sm">
-                                                        <?= htmlspecialchars($visit['name']); ?> - <?= htmlspecialchars(formatNumber($visit['number'])); ?>
+                                                        <?= htmlspecialchars(getFirstTwoNames($visit['name'])); ?> - <?= htmlspecialchars(formatNumber($visit['number'])); ?>
                                                     </p>
                                                 </div>
                                                 <div class="flex items-center gap-2 text-gray-600">
