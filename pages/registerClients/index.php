@@ -46,7 +46,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                             </div>
                             <div>
                                 <label for="cpf_cnpj" class="subTitulo-default-client">
-                                    CPF/CNPJ
+                                    CPF/CNPJ (Opcional)
                                 </label>
                                 <div class="relative">
                                     <i class="bi bi-person-vcard icon-default-client"></i>
@@ -118,7 +118,8 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                         class="cursor-pointer transition-all text-blue-600 hover:text-blue-800 btn-edit-client"
                                                         data-id="<?= htmlspecialchars($client['id']); ?>"
                                                         data-name="<?= htmlspecialchars($client['name']); ?>"
-                                                        data-number="<?= htmlspecialchars($client['number']); ?>">
+                                                        data-number="<?= htmlspecialchars($client['number']); ?>"
+                                                        data-cpf_cnpj="<?= htmlspecialchars($client['cpf_cnpj']); ?>">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </button>
                                                 </div>
@@ -131,7 +132,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                             </div>
                                         </div>
                                         <p class="text-sm text-gray-600 mb-1">
-                                            <?= htmlspecialchars(formatCpfCnpj($client['cpf_cnpj'])); ?>
+                                            <?= htmlspecialchars(empty($client['cpf_cnpj']) ? 'CPF/CNPJ: Não Cadastrado' : formatCpfCnpj($client['cpf_cnpj'])); ?>
                                         </p>
                                         <p class="text-sm text-gray-600">
                                             Contato: <?= htmlspecialchars(formatNumber($client['number'])); ?>
@@ -169,6 +170,12 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                             Nome Completo
                         </label>
                         <input id="edit_name" name="edit_name" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" value="" maxlength="100">
+                    </div>
+                    <div>
+                        <label for="edit_cpf_cnpj" class="block text-sm font-medium text-gray-700 mb-2">
+                            CPF/CNPJ
+                        </label>
+                        <input id="edit_cpf_cnpj" name="edit_cpf_cnpj" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors" value="" maxlength="100">
                     </div>
                     <div>
                         <label for="edit_number" class="block text-sm font-medium text-gray-700 mb-2">

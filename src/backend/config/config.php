@@ -28,7 +28,7 @@ loadEnv(__DIR__ . '/../../../.env');
 // Database configuration using environment variables
 define('CONF_DB_HOST', $_ENV['DB_HOST'] ?? 'localhost');
 define('CONF_DB_USER', $_ENV['DB_USER'] ?? 'root');
-define('CONF_DB_PASS', $_ENV['DB_PASS'] ?? '');
+define('CONF_DB_PASS', $_ENV['DB_PASS'] ?? 'nicole');
 define('CONF_DB_NAME', $_ENV['DB_NAME'] ?? 'davidservices');
 define('CONF_DB_CHARSET', 'utf8');
 

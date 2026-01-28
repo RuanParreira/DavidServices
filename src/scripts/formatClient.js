@@ -98,4 +98,30 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!/[0-9]/.test(e.key)) e.preventDefault();
     });
   }
+
+  // Formatar CPF/CNPJ (campo do modal de edição)
+  const editCPF_CNPJ_Input = document.getElementById("edit_cpf_cnpj");
+  if (editCPF_CNPJ_Input) {
+    editCPF_CNPJ_Input.addEventListener("input", function () {
+      let value = editCPF_CNPJ_Input.value.replace(/\D/g, ""); // Remove tudo que não for número
+      value = value.slice(0, 14);
+      if (value.length <= 11) {
+        value = value.replace(/(\d{3})(\d)/, "$1.$2");
+        value = value.replace(/(\d{3})(\d)/, "$1.$2");
+        value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+      } else {
+        value = value.replace(/^(\d{2})(\d)/, "$1.$2");
+        value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+        value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
+        value = value.replace(/(\d{4})(\d{1,2})$/, "$1-$2");
+      }
+      editCPF_CNPJ_Input.value = value;
+    });
+
+    editCPF_CNPJ_Input.addEventListener("keypress", function (e) {
+      if (!/[0-9]/.test(e.key)) {
+        e.preventDefault();
+      }
+    });
+  }
 });

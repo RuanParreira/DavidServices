@@ -102,6 +102,9 @@ try {
     $dataChegada = isset($_GET['dataChegada']) ? $_GET['dataChegada'] : '';
     $dataEntregue = isset($_GET['dataEntregue']) ? $_GET['dataEntregue'] : '';
 
+    // Remover tudo que não for dígito para busca por CPF/CNPJ sem pontuação
+    $cleanSearch = preg_replace('/\D/', '', $search);
+
     $sql = 'SELECT s.id, s.status, s.equipment, s.observation, s.date, s.updated_at, s.problem, c.name, c.cpf_cnpj, c.number, t.id AS technician_id, t.name AS technician_name 
             FROM services s 
             JOIN clients c ON s.id_client = c.id 
@@ -110,8 +113,20 @@ try {
     $params = [':status' => 4];
 
     if ($search !== '') {
-        $sql .= ' AND (c.name LIKE :search OR c.cpf_cnpj LIKE :search OR s.equipment LIKE :search)';
+        // Busca por nome, equipamento, cpf_cnpj (com e sem pontuação)
+        $sql .= " AND (c.name LIKE :search OR s.equipment LIKE :search";
         $params[':search'] = "%$search%";
+
+        if ($cleanSearch !== '') {
+            // compara a versão sem pontuação do cpf_cnpj (MySQL REPLACE em cadeia)
+            $sql .= " OR REPLACE(REPLACE(REPLACE(REPLACE(c.cpf_cnpj, '.', ''), '-', ''), '/', ''), ' ', '') LIKE :cleanSearch";
+            $params[':cleanSearch'] = "%$cleanSearch%";
+        } else {
+            // caso o usuário pesquise incluindo pontuação, também verifica a coluna original
+            $sql .= " OR c.cpf_cnpj LIKE :search";
+        }
+
+        $sql .= ")";
     }
 
     if ($dataChegada !== '') {
@@ -120,7 +135,13 @@ try {
     }
 
     if ($dataEntregue !== '') {
-        $sql .= ' AND s.updated_at = :dataEntregue';
+        // aceitar formato dd/mm/yyyy ou yyyy-mm-dd
+        if (strpos($dataEntregue, '/') !== false) {
+            $dt = DateTime::createFromFormat('d/m/Y', $dataEntregue);
+            $dataEntregue = $dt ? $dt->format('Y-m-d') : $dataEntregue;
+        }
+        // comparar apenas a parte data de updated_at
+        $sql .= ' AND DATE(s.updated_at) = :dataEntregue';
         $params[':dataEntregue'] = $dataEntregue;
     }
 

@@ -9,6 +9,11 @@ if (!isset($_SESSION['user_id'])) {
 // Função para formatar CPF/CNPJ
 function formatCpfCnpj($value, $showPrefix = true): string
 {
+    // Retorna vazio se for null ou vazio
+    if (empty($value)) {
+        return '';
+    }
+
     $digits = preg_replace('/\D/', '', $value);
     if (strlen($digits) === 11) {
         // CPF

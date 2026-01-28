@@ -85,7 +85,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                     <div class="iten-default-card">
                                         <i class="bi bi-person-vcard"></i>
                                         <span>
-                                            <?= htmlspecialchars(formatCpfCnpj($services['cpf_cnpj'])); ?>
+                                            <?= htmlspecialchars(empty($services['cpf_cnpj']) ? 'CPF/CNPJ: Não Cadastrado' : formatCpfCnpj($services['cpf_cnpj'])); ?>
                                         </span>
                                     </div>
                                     <div class="iten-default-card">

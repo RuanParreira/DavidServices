@@ -118,9 +118,15 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                     <!-- Visitas Agendadas -->
                     <div class="layer-cont-search-visits">
                         <form class="mb-6" method="get" autocomplete="off">
-                            <label for="search" class="titulo-label-visits">
-                                Ver visitas do Dia
-                            </label>
+                            <div class="flex space-x-2">
+                                <label for="search" class="titulo-label-visits hover:text-blue-600 hover:cursor-pointer">
+                                    Ver Visitas do Dia
+                                </label>
+                                <i class="bi bi-dash-lg titulo-label-visits"></i>
+                                <label for="search" class="titulo-label-visits hover:text-blue-600 hover:cursor-pointer">
+                                    Ver Todas as visitas
+                                </label>
+                            </div>
                             <div class="flex space-x-4">
                                 <input type="date" name="search" id="search" class="input-search-visits"
                                     value="<?= isset($_GET['search']) && $_GET['search'] !== '' ? htmlspecialchars($_GET['search']) : date('Y-m-d') ?>">

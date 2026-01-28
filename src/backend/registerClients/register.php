@@ -35,13 +35,14 @@ function validarCNPJ($cnpj)
 // Registrar Clientes
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim(strip_tags($_POST['name'] ?? ''));
-    $cpf_cnpj = trim(strip_tags(preg_replace('/\D/', '', $_POST['cpf_cnpj'] ?? ''))); // Remove tudo que não for número
+    $cpf_cnpj = trim(strip_tags(preg_replace('/\D/', '', $_POST['cpf_cnpj'] ?? '')));
+    $cpf_cnpj = ($cpf_cnpj === '') ? null : $cpf_cnpj; // Converte string vazia para null
     $number = trim(strip_tags(preg_replace('/\D/', '', $_POST['number'] ?? ''))); // Remove tudo que não for número
     $id_user = $_SESSION['user_id'] ?? null;
 
     // Verificar se todos os campos estão preenchidos
-    if (empty($name) || empty($cpf_cnpj) || empty($number) || empty($id_user)) {
-        $_SESSION['error_message'] = "Todos os campos são obrigatórios.";
+    if (empty($name) || empty($number) || empty($id_user)) {
+        $_SESSION['error_message'] = "Nome e numero Obrigatórios";
         header('Location: ../../../pages/registerClients');
         exit;
     }
@@ -58,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Chama a função para validar CPF/CNPJ
-    if (!(validarCPF($cpf_cnpj) || validarCNPJ($cpf_cnpj))) {
+    if ($cpf_cnpj !== null && !(validarCPF($cpf_cnpj) || validarCNPJ($cpf_cnpj))) {
         $_SESSION['error_message'] = "CPF/CNPJ inválido.";
         header('Location: ../../../pages/registerClients');
         exit;
@@ -75,20 +76,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    //Verifica se o CPF/CNPJ já existe no banco de dados
-    $stmt = $pdo->prepare('SELECT id FROM clients WHERE cpf_cnpj = :cp');
-    $stmt->bindValue(':cp', $cpf_cnpj, PDO::PARAM_STR);
-    $stmt->execute();
-    if ($stmt->fetch()) {
-        $_SESSION['error_message'] = "Esse CPF/CNPJ já está cadastrado.";
-        header('Location: ../../../pages/registerClients');
-        exit;
+    //Verifica se o CPF/CNPJ já existe no banco de dados (apenas se informado)
+    if ($cpf_cnpj !== null) {
+        $stmt = $pdo->prepare('SELECT id FROM clients WHERE cpf_cnpj = :cp');
+        $stmt->bindValue(':cp', $cpf_cnpj, PDO::PARAM_STR);
+        $stmt->execute();
+        if ($stmt->fetch()) {
+            $_SESSION['error_message'] = "Esse CPF/CNPJ já está cadastrado.";
+            header('Location: ../../../pages/registerClients');
+            exit;
+        }
     }
 
     try {
         $stmt = $pdo->prepare('INSERT INTO clients (name, cpf_cnpj, number, id_user) VALUES (:n, :cp, :nu, :i)');
         $stmt->bindValue(':n', $name, PDO::PARAM_STR);
-        $stmt->bindValue(':cp', $cpf_cnpj, PDO::PARAM_STR);
+        $stmt->bindValue(':cp', $cpf_cnpj, ($cpf_cnpj === null) ? PDO::PARAM_NULL : PDO::PARAM_STR);
         $stmt->bindValue(':nu', $number, PDO::PARAM_STR);
         $stmt->bindValue(':i', $id_user, PDO::PARAM_INT);
         $stmt->execute();

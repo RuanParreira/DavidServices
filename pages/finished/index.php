@@ -120,7 +120,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                                         <?= htmlspecialchars($services['name']) ?>
                                                     </p>
                                                     <p class="text-sm text-gray-500">
-                                                        <?= htmlspecialchars(formatCpfCnpj($services['cpf_cnpj'], false)) ?>
+                                                        <?= htmlspecialchars(empty($services['cpf_cnpj']) ? 'Não Cadastrado' : formatCpfCnpj($services['cpf_cnpj'], false)); ?>
                                                     </p>
                                                 </div>
                                             </td>
