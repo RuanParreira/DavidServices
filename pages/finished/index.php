@@ -33,9 +33,22 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                 </div>
                 <!-- Conteudo Da Pagina -->
                 <div class="layer-page-finalizados">
-                    <h2 class="titulo-busca-finalizados">
-                        Filtros de Busca
-                    </h2>
+                    <div class="flex items-center justify-between mb-2 lg:mb-0">
+                        <h2 class="titulo-busca-finalizados flex-1 mb-0 lg:mb-2">
+                            Filtros de Busca
+                        </h2>
+                        <div class="flex lg:hidden items-end space-x-2">
+                            <!-- Botao de Limpar a Busca -->
+                            <?php if (!empty($_GET['search']) || !empty($_GET['dataChegada']) || !empty($_GET['dataEntregue'])): ?>
+                                <button type="button" id="clearFinishedSearch" class="btn-limpar-busca h-10">
+                                    <i class="bi bi-trash text-xl"></i>
+                                </button>
+                            <?php endif; ?>
+                            <button type="submit" class="btn-buscar">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </div>
                     <!-- Campo de Busca dos Serviços -->
                     <form method="get" autocomplete="off" class="layer-search-finalizados ">
                         <div class="w-full col-span-2">
@@ -68,7 +81,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                     value="<?= isset($_GET['dataEntregue']) ? htmlspecialchars($_GET['dataEntregue']) : '' ?>">
                             </div>
                         </div>
-                        <div class="flex items-end space-x-2">
+                        <div class="hidden lg:flex items-end space-x-2">
                             <!-- Botao de Limpar a Busca -->
                             <?php if (!empty($_GET['search']) || !empty($_GET['dataChegada']) || !empty($_GET['dataEntregue'])): ?>
                                 <button type="button" id="clearFinishedSearch" class="btn-limpar-busca h-10">

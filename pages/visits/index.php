@@ -4,6 +4,11 @@
 require __DIR__ . '/../../src/backend/functions/geral.php';
 require __DIR__ . '/../../src/backend/visits/listAll.php';
 require __DIR__ . '/../../src/includes/menu_state.php';
+
+// Determina qual filtro está ativo: hoje, todas ou data específica
+$searchParam = isset($_GET['search']) ? trim($_GET['search']) : null;
+$isAll = isset($_GET['search']) && $searchParam === '';
+$isToday = !isset($_GET['search']) || ($searchParam === date('Y-m-d'));
 ?>
 
 <head>
@@ -117,15 +122,15 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                     </div>
                     <!-- Visitas Agendadas -->
                     <div class="layer-cont-search-visits">
-                        <form class="mb-6" method="get" autocomplete="off">
+                        <form id="searchForm" class="mb-6" method="get" autocomplete="off">
                             <div class="flex space-x-2">
-                                <label for="search" class="titulo-label-visits hover:text-blue-600 hover:cursor-pointer">
+                                <button type="button" id="btnToday" class="titulo-label-visits hover:text-blue-600 hover:cursor-pointer<?= $isToday ? ' text-blue-600' : '' ?>">
                                     Ver Visitas do Dia
-                                </label>
+                                </button>
                                 <i class="bi bi-dash-lg titulo-label-visits"></i>
-                                <label for="search" class="titulo-label-visits hover:text-blue-600 hover:cursor-pointer">
+                                <button type="button" id="btnAll" class="titulo-label-visits hover:text-blue-600 hover:cursor-pointer<?= $isAll ? ' text-blue-600' : '' ?>">
                                     Ver Todas as visitas
-                                </label>
+                                </button>
                             </div>
                             <div class="flex space-x-4">
                                 <input type="date" name="search" id="search" class="input-search-visits"
@@ -144,6 +149,23 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                 </div>
                             </div>
                         </form>
+                        <script>
+                            (function() {
+                                var form = document.getElementById('searchForm');
+                                var input = document.getElementById('search');
+                                if (!form || !input) return;
+
+                                document.getElementById('btnToday').addEventListener('click', function() {
+                                    input.value = new Date().toISOString().slice(0, 10);
+                                    form.submit();
+                                });
+
+                                document.getElementById('btnAll').addEventListener('click', function() {
+                                    input.value = '';
+                                    form.submit();
+                                });
+                            })();
+                        </script>
                         <?php if (empty($list_Visits)): ?>
                             <div class="layer-nao-encontrado-visits">
                                 <i class="bi bi-calendar"></i>
@@ -186,14 +208,29 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                             <div class="space-y-1">
                                                 <div class="flex items-center gap-2">
                                                     <i class="bi bi-person text-blue-600"></i>
+                                                    <?php
+                                                    $whatsapp = preg_replace('/\D/', '', $visit['number']);
+                                                    if (substr($whatsapp, 0, 2) !== '55') {
+                                                        $whatsapp = '55' . $whatsapp;
+                                                    }
+                                                    ?>
                                                     <p class="font-medium text-gray-900 text-sm">
-                                                        <?= htmlspecialchars(getFirstTwoNames($visit['name'])); ?> - <?= htmlspecialchars(formatNumber($visit['number'])); ?>
+                                                        <?= htmlspecialchars(getFirstTwoNames($visit['name'])); ?> -
+                                                        <a href="https://wa.me/<?= htmlspecialchars($whatsapp) ?>" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:text-green-800">
+                                                            <?= htmlspecialchars(formatNumber($visit['number'])); ?>
+                                                        </a>
                                                     </p>
                                                 </div>
                                                 <div class="flex items-center gap-2 text-gray-600">
                                                     <i class="bi bi-people text-blue-600"></i>
                                                     <p class="text-sm">
                                                         Técnico: <?= htmlspecialchars(getFirstTwoNames($visit['technical_name'])); ?>
+                                                    </p>
+                                                </div>
+                                                <div class="flex items-center gap-2 text-gray-600">
+                                                    <i class="bi bi-calendar4 text-blue-600"></i>
+                                                    <p class="text-sm">
+                                                        Data: <?= htmlspecialchars(date(CONF_DATE_BR, strtotime($visit['date']))); ?>
                                                     </p>
                                                 </div>
                                                 <div class="flex items-center justify-between text-sm text-gray-600">

@@ -2,9 +2,29 @@
 require __DIR__ . '/../conn.php';
 
 try {
-    $search = isset($_GET['search']) ? trim($_GET['search']) : '';
-    if ($search !== '') {
-        // Busca por data exata
+    // Diferenciar entre: parâmetro ausente (mostrar visitas do dia),
+    // parâmetro presente mas vazio (mostrar todas), ou data específica.
+    $search = isset($_GET['search']) ? trim($_GET['search']) : null;
+    if (!isset($_GET['search'])) {
+        // Parâmetro não enviado: mostrar visitas do dia
+        $today = date('Y-m-d');
+        $stmt = $pdo->prepare('SELECT s.id, s.status, s.date, s.time, s.address, s.id_technical, c.name, c.number, t.name as technical_name
+        FROM visits s 
+        JOIN clients c ON s.id_client = c.id
+        JOIN technicians t ON s.id_technical = t.id
+        WHERE s.date = :search
+        ORDER BY s.time ASC');
+        $stmt->execute([':search' => $today]);
+    } elseif ($search === '') {
+        // Parâmetro presente mas vazio: mostrar todas as visitas
+        $stmt = $pdo->prepare('SELECT s.id, s.status, s.date, s.time, s.address, s.id_technical, c.name, c.number, t.name as technical_name
+        FROM visits s 
+        JOIN clients c ON s.id_client = c.id
+        JOIN technicians t ON s.id_technical = t.id
+        ORDER BY s.date ASC, s.time ASC');
+        $stmt->execute();
+    } else {
+        // Busca por data exata passada no parâmetro
         $stmt = $pdo->prepare('SELECT s.id, s.status, s.date, s.time, s.address, s.id_technical, c.name, c.number, t.name as technical_name
         FROM visits s 
         JOIN clients c ON s.id_client = c.id
@@ -12,15 +32,6 @@ try {
         WHERE s.date = :search
         ORDER BY s.time ASC');
         $stmt->execute([':search' => $search]);
-    } else {
-        // Busca pela data atual
-        $stmt = $pdo->prepare('SELECT s.id, s.status, s.date, s.time, s.address, s.id_technical, c.name, c.number, t.name as technical_name
-        FROM visits s 
-        JOIN clients c ON s.id_client = c.id
-        JOIN technicians t ON s.id_technical = t.id
-        WHERE s.date = :search
-        ORDER BY s.time ASC');
-        $stmt->execute([':search' => date('Y-m-d')]);
     }
     $list_Visits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {

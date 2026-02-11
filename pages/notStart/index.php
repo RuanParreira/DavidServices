@@ -90,8 +90,17 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                                     </div>
                                     <div class="iten-default-card">
                                         <i class="bi bi-telephone"></i>
+                                        <?php
+                                            $whatsapp = preg_replace('/\D/', '', $services['number']);
+                                            if (substr($whatsapp, 0, 2) !== '55') {
+                                                $whatsapp = '55' . $whatsapp;
+                                            }
+                                        ?>
                                         <span>
-                                            Contato: <?= htmlspecialchars(formatNumber($services['number'])) ?>
+                                            Contato:
+                                            <a href="https://wa.me/<?= htmlspecialchars($whatsapp) ?>" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:text-green-800">
+                                                <?= htmlspecialchars(formatNumber($services['number'])) ?>
+                                            </a>
                                         </span>
                                     </div>
                                     <div class="iten-default-card">
