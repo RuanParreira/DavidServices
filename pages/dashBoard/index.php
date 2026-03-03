@@ -26,7 +26,7 @@ require __DIR__ . '/../../src/includes/menu_state.php';
         <?php endif; ?>
         <!-- Conteudo da Página -->
         <div class="cont-page">
-            <div class="space-y-6 h-full">
+            <div class="space-y-6 h-full flex flex-col">
                 <!-- Titulo -->
                 <div class="layer-titulo">
                     <i class="bi bi-graph-up-arrow"></i>
@@ -161,12 +161,12 @@ require __DIR__ . '/../../src/includes/menu_state.php';
                         </div>
                     </a>
                 </div>
-                <div class="bg-white rounded-xl lg:h-[48%] shadow-sm border border-gray-100">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col flex-1 overflow-hidden">
                     <div class="px-6 py-4 border-b border-gray-100">
                         <h2 class="text-2xl font-semibold text-gray-900">Ultimos Serviços</h2>
                         <p class="pequena-descricao">Os 5 serviços mais recentes cadastrados no sistema</p>
                     </div>
-                    <div class="px-[4%] lg:px-6 py-2 lg:h-[72%]">
+                    <div class="px-[4%] lg:px-6 py-2 flex-1 overflow-y-auto">
                         <div class="space-y-4 overflow-y-auto h-full">
                             <!-- Puxar do banco de dados -->
                             <?php if (empty($ultimos_servicos)): ?>
