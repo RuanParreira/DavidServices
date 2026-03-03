@@ -39,9 +39,6 @@ document.querySelectorAll(".btn-edit-visit").forEach((btn) => {
     if (inputAddress) inputAddress.value = visitAddress || "";
     if (selectTechnical) selectTechnical.value = technicalId || "";
     if (inputId) inputId.value = visitId || "";
-
-    // Focar no campo endereço
-    if (inputAddress) inputAddress.focus();
   });
 });
 

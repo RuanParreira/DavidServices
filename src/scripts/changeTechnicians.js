@@ -43,9 +43,6 @@ document.querySelectorAll(".btn-edit-client").forEach((btn) => {
       inputNumber.dispatchEvent(new Event("input"));
     }
     if (inputId) inputId.value = technicalId || "";
-
-    // Focar no campo nome
-    if (inputName) inputName.focus();
   });
 });
 

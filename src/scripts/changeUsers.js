@@ -70,9 +70,6 @@ document.querySelectorAll(".btn-edit-client").forEach((btn) => {
       }
     };
     modal.addEventListener("keydown", modal._submitOnEnter);
-
-    // Focar no campo nome
-    if (inputName) inputName.focus();
   });
 });
 

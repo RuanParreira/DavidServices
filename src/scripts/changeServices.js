@@ -48,9 +48,6 @@ document.querySelectorAll(".btn-edit-client").forEach((btn) => {
     if (selectTechnical) selectTechnical.value = serviceTechnical || "";
     if (selectStatus) selectStatus.value = serviceStatus || "";
     if (textareaProblem) textareaProblem.value = serviceProblem || "";
-
-    // Focar no campo equipamento
-    if (inputEquipment) inputEquipment.focus();
   });
 });
 

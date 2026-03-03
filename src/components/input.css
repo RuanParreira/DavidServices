@@ -47,17 +47,17 @@
 
   /* Mensagem de Sucesso */
   .successMessage {
-    @apply absolute right-10 bottom-10 flex items-center space-x-2 rounded-lg border border-gray-200 bg-white px-4 py-2 shadow-md;
+    @apply fixed top-10 left-1/2 w-[calc(100%-2rem)] -translate-x-1/2 lg:top-auto lg:left-auto lg:right-10 lg:bottom-10 lg:w-auto lg:translate-x-0 flex items-center justify-center space-x-2 rounded-lg border border-gray-200 bg-white px-4 py-2 shadow-md z-100;
     i {
       @apply text-2xl text-blue-500;
     }
     p {
-      @apply text-lg text-gray-700;
+      @apply whitespace-nowrap text-lg text-gray-700;
     }
   }
   /* Mensagem de Erro */
   .errorMessage {
-    @apply absolute right-10 bottom-10 flex items-center space-x-2 rounded-lg border border-gray-200 bg-white px-4 py-2 shadow-md;
+    @apply fixed top-10 left-1/2 w-[calc(100%-2rem)] -translate-x-1/2 lg:top-auto lg:left-auto lg:right-10 lg:bottom-10 lg:w-auto lg:translate-x-0 flex items-center justify-center space-x-2 rounded-lg border border-gray-200 bg-white px-4 py-2 shadow-md z-100;
     i {
       @apply text-2xl text-red-500;
     }
