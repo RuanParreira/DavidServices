@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($input['menuState'])) {
         $_SESSION['menuState'] = $input['menuState'];
 
+        setcookie('menuState', $input['menuState'], time() + (30 * 24 * 60 * 60), '/');
+
         http_response_code(200);
         echo json_encode(['success' => true, 'menuState' => $_SESSION['menuState']]);
     } else {

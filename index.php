@@ -1,5 +1,18 @@
 <?php
+require './src/backend/conn.php';
 session_start();
+
+// Se já está logado ou tem token válido, vai para dashboard
+if (isset($_SESSION['user_id'])) {
+  header('Location: pages/dashBoard/');
+  exit;
+}
+
+// Verifica se tem cookie de "lembrar-me"
+if (checkRememberToken($pdo)) {
+  header('Location: pages/dashBoard/');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +59,14 @@ session_start();
           </button>
         </div>
       </label>
+      <div class="w-full flex items-center">
+        <label for="remember">
+          <input type="checkbox" id="remember" name="remember" class="cursor-pointer">
+          <span class="text-blue-600 font-semibold text-sm">
+            Lembrar-me
+          </span>
+        </label>
+      </div>
       <button type="submit" class="btn-login">Entrar</button>
     </form>
     </div>

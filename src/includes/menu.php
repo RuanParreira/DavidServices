@@ -1,4 +1,9 @@
 <?php
+if (!isset($_SESSION['menuState']) && isset($_COOKIE['menuState'])) {
+    $_SESSION['menuState'] = $_COOKIE['menuState'];
+}
+
+
 $currentPage = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 // Verificar estado do menu na sessão
